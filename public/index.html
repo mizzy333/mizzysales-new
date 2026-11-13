@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/js/auth-keeper.js?v=1"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mizzy Sales — Mizzy Sales</title>
+  <meta name="description" content="Mizzy Sales — buy verified social media logs, SMS verification numbers and digital services worldwide. Trusted, blue-tick verified seller with instant delivery."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=20260910a"/>
+  <link rel="stylesheet" href="theme.css?v=20260910a"/>
+  <link rel="stylesheet" href="css/layout-polish.css?v=20260910a"/>
+  <link rel="icon" type="image/jpeg" href="/img/mizzy-logo.jpg"/>
+  <link rel="manifest" href="manifest.json"/>
+  <meta name="theme-color" content="#2f7bf6"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="Mizzy Sales"/>
+  <link rel="apple-touch-icon" href="/img/mizzy-logo.jpg"/>
+  <script>
+    // Apply theme before first paint to avoid a flash of the wrong theme
+    (function(){
+      try {
+        var pref = localStorage.getItem('ksl_theme');
+        var effective = (pref === 'light' || pref === 'dark') ? pref : (function(){ var h = new Date().getHours(); return (h >= 19 || h < 7) ? 'dark' : 'light'; })();
+        document.documentElement.setAttribute('data-theme', effective);
+        // Follow the device / country clock: with no manual override, re-evaluate the
+        // theme on a timer and whenever the tab is shown again (covers timezone changes).
+        var auto = function(){
+          try {
+            var p = localStorage.getItem('ksl_theme');
+            if (p === 'light' || p === 'dark') return;
+            var h = new Date().getHours();
+            document.documentElement.setAttribute('data-theme', (h >= 19 || h < 7) ? 'dark' : 'light');
+          } catch(e) {}
+        };
+        setInterval(auto, 10 * 60 * 1000);
+        document.addEventListener('visibilitychange', function(){ if (!document.hidden) auto(); });
+      } catch(e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="css/pro-polish.css?v=20260910a"/>
+ <link rel="stylesheet" href="/css/announce.css?v=3"/>
+ <link rel="stylesheet" href="/css/app-structure.css?v=3"/>
+  <link rel="stylesheet" href="/css/redesign.css?v=20260910a"/>
+  <link rel="stylesheet" href="/css/fix-pack.css?v=20260910a"/>
+  <!-- Brand colours/fonts from site.config.js — keep last so it can override -->
+  <link rel="stylesheet" href="/brand.css"/>
+  <link rel="stylesheet" href="/css/mobile-fix.css">
+  <link rel="stylesheet" href="/css/mizzy-unified.css?v=3"/>
+  <link rel="stylesheet" href="/css/home-editorial.css?v=1"/>
+  <link rel="stylesheet" href="/css/welcome-pro.css?v=1"/>
+  <link rel="stylesheet" href="/css/site-banner.css?v=1"/>
+  <link rel="stylesheet" href="/css/mizzy-pro.css?v=2"/>
+<style id="mizzy-pro-inline">
+/* inlined so this page never depends on /css/mizzy-pro.css loading */
+/* ==========================================================================
+   Mizzy Sales — Pro redesign layer
+   Brand: electric cyan #00b4f8 · deep blue #0084d6 · navy #0b0f19 / #002d57
+   Loaded LAST so it refines the older stylesheets without touching them.
+   ========================================================================== */
+:root{
+  --mp-a:#00b4f8; --mp-a2:#0084d6; --mp-a3:#7ee2ff;
+  --mp-navy:#0b0f19; --mp-navy2:#0d1e38; --mp-navy3:#002d57;
+  --mp-glow:rgba(0,180,248,.28);
+  --mp-radius:20px;
+}
+
+/* ---------- shared bits ---------- */
+.mp-wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.mp-sec{padding:72px 0}
+.mp-sec--tight{padding:44px 0}
+.mp-eyebrow{display:inline-flex;align-items:center;gap:8px;font:800 11.5px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mp-a);background:rgba(0,180,248,.1);border:1px solid rgba(0,180,248,.28);padding:8px 14px;border-radius:999px}
+.mp-eyebrow i{width:7px;height:7px;border-radius:50%;background:#18d27a;box-shadow:0 0 10px #18d27a;display:inline-block}
+.mp-h2{font:800 clamp(26px,4.2vw,40px)/1.12 'Sora','Plus Jakarta Sans',sans-serif;letter-spacing:-.02em;margin:14px 0 10px;color:var(--t1)}
+.mp-sub{font-size:15.5px;line-height:1.65;color:var(--t2);max-width:600px;margin:0}
+.mp-head{margin-bottom:38px}
+.mp-head--c{text-align:center}.mp-head--c .mp-sub{margin-inline:auto}
+.mp-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 26px;border-radius:14px;font:800 15px/1 'Plus Jakarta Sans',sans-serif;border:1px solid transparent;cursor:pointer;text-decoration:none!important;transition:transform .18s,box-shadow .18s,background .18s,border-color .18s}
+.mp-btn:hover{transform:translateY(-2px)}
+.mp-btn--p{background:linear-gradient(135deg,var(--mp-a),var(--mp-a2));color:#fff!important;box-shadow:0 12px 30px -10px rgba(0,180,248,.75)}
+.mp-btn--p:hover{box-shadow:0 16px 36px -10px rgba(0,180,248,.9)}
+.mp-btn--g{background:transparent;color:var(--t1)!important;border-color:var(--border2)}
+.mp-btn--g:hover{border-color:var(--mp-a);color:var(--mp-a)!important}
+.mp-btn--w{background:#fff;color:#003a63!important}
+.mp-btn--o{background:rgba(255,255,255,.08);color:#fff!important;border-color:rgba(255,255,255,.35)}
+.mp-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mp-card{background:var(--card);border:1px solid var(--border);border-radius:var(--mp-radius);padding:26px;transition:transform .22s,border-color .22s,box-shadow .22s}
+.mp-card:hover{transform:translateY(-4px);border-color:rgba(0,180,248,.5);box-shadow:0 22px 44px -22px var(--mp-glow)}
+.mp-ic{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(0,180,248,.18),rgba(0,132,214,.28));color:var(--mp-a);margin-bottom:16px}
+.mp-ic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.mp-card h3{font:800 17px/1.3 'Sora','Plus Jakarta Sans',sans-serif;margin:0 0 8px;color:var(--t1)}
+.mp-card p{margin:0;font-size:14px;line-height:1.65;color:var(--t2)}
+.mp-card .mp-go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:800;font-size:13.5px;color:var(--mp-a)}
+.mp-grid{display:grid;gap:16px}
+.mp-grid--3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.mp-grid--4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+/* ---------- HERO (guest landing + home) ---------- */
+.mp-hero{position:relative;overflow:hidden;background:
+  radial-gradient(900px 480px at 88% -8%,rgba(0,180,248,.30),transparent 60%),
+  radial-gradient(700px 420px at -8% 38%,rgba(0,132,214,.22),transparent 62%),
+  linear-gradient(180deg,rgba(0,45,87,.35),transparent 70%)}
+.mp-hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(0,180,248,.16) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(180deg,#000,transparent 75%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 75%);pointer-events:none}
+.mp-hero-grid{position:relative;display:grid;gap:44px;align-items:center;padding:64px 0 38px}
+@media(min-width:900px){.mp-hero-grid{grid-template-columns:1.08fr .92fr;padding:92px 0 54px}}
+.mp-h1{font:800 clamp(34px,6.4vw,62px)/1.04 'Sora','Plus Jakarta Sans',sans-serif;letter-spacing:-.03em;margin:20px 0 18px;color:var(--t1)}
+.mp-h1 em{font-style:normal;background:linear-gradient(90deg,#00b4f8,#7ee2ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mp-lead{font-size:17px;line-height:1.7;color:var(--t2);max-width:520px;margin:0 0 28px}
+.mp-cta{display:flex;gap:12px;flex-wrap:wrap}
+.mp-trust{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:26px;font-size:13.5px;color:var(--t2);font-weight:600}
+.mp-trust span{display:inline-flex;align-items:center;gap:8px}
+.mp-trust b{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:rgba(24,210,122,.16);color:#18d27a;font-size:11px}
+.mp-art{position:relative}
+.mp-art-img{width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:28px;border:1px solid rgba(0,180,248,.35);box-shadow:0 40px 80px -36px rgba(0,180,248,.55);display:block}
+.mp-art::after{content:"";position:absolute;inset:0;border-radius:28px;background:linear-gradient(160deg,rgba(0,180,248,.18),rgba(0,18,40,.5));pointer-events:none}
+.mp-float{position:absolute;z-index:3;background:rgba(11,15,25,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(0,180,248,.35);border-radius:16px;padding:12px 16px;color:#fff;font-weight:800;font-size:13px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);display:flex;align-items:center;gap:11px}
+.mp-float small{display:block;font-weight:600;font-size:11.5px;color:#9fb3c8;margin-top:2px}
+.mp-float .dot{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mp-a),var(--mp-a2));flex:none}
+.mp-float .dot svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mp-float--a{left:-10px;bottom:28px}.mp-float--b{right:-8px;top:26px}
+@media(max-width:560px){.mp-float--a{left:6px;bottom:12px}.mp-float--b{right:6px;top:12px}.mp-float{padding:9px 12px;font-size:12px}}
+
+/* ---------- stats ---------- */
+.mp-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 0 12px;position:relative}
+@media(min-width:760px){.mp-stats{grid-template-columns:repeat(5,1fr)}}
+.mp-stat{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 12px;text-align:center}
+.mp-stat b{display:block;font:800 clamp(22px,3.6vw,30px)/1 'Sora',sans-serif;color:var(--mp-a);margin-bottom:6px}
+.mp-stat span{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--t2)}
+.mp-stats--4{grid-template-columns:repeat(2,1fr)}@media(min-width:760px){.mp-stats--4{grid-template-columns:repeat(4,1fr)}}
+
+/* ---------- marquee chips ---------- */
+.mp-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.mp-chips span{padding:10px 18px;border-radius:999px;border:1px solid var(--border);background:var(--card);font-size:13.5px;font-weight:700;color:var(--t2);transition:all .2s}
+.mp-chips span:hover{border-color:var(--mp-a);color:var(--mp-a);transform:translateY(-2px)}
+
+/* ---------- steps ---------- */
+.mp-steps{display:grid;gap:16px;counter-reset:mp;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.mp-step{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--mp-radius);padding:28px 24px 24px}
+.mp-step::before{counter-increment:mp;content:"0" counter(mp);position:absolute;top:18px;right:20px;font:800 34px/1 'Sora',sans-serif;color:rgba(0,180,248,.16)}
+.mp-step h3{font:800 17px/1.3 'Sora',sans-serif;margin:14px 0 8px;color:var(--t1)}
+.mp-step p{margin:0;font-size:14px;line-height:1.65;color:var(--t2)}
+
+/* ---------- wallet showcase ---------- */
+.mp-split{display:grid;gap:40px;align-items:center}
+@media(min-width:900px){.mp-split{grid-template-columns:1fr 1fr;gap:64px}}
+.mp-list{list-style:none;padding:0;margin:22px 0 28px;display:grid;gap:14px}
+.mp-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.55;color:var(--t1);font-weight:600}
+.mp-list li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:rgba(0,180,248,.16);color:var(--mp-a);font-size:12px;font-weight:900;margin-top:1px}
+.mp-band{background:linear-gradient(180deg,rgba(0,180,248,.06),rgba(0,132,214,.02));border-block:1px solid var(--border)}
+
+/* ---------- the credit-card-style wallet (landing + dashboard) ---------- */
+.mp-wallet{position:relative;overflow:hidden;border-radius:26px;padding:26px 26px 22px;color:#fff;max-width:440px;width:100%;margin-inline:auto;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;
+  background:radial-gradient(420px 260px at 105% -10%,rgba(126,226,255,.55),transparent 60%),radial-gradient(360px 240px at -10% 115%,rgba(0,180,248,.45),transparent 60%),linear-gradient(140deg,#0a2a52 0%,#003d73 48%,#0084d6 120%);
+  border:1px solid rgba(126,226,255,.35);box-shadow:0 34px 70px -28px rgba(0,132,214,.8),inset 0 1px 0 rgba(255,255,255,.18)}
+.mp-wallet::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.045) 0 2px,transparent 2px 14px);pointer-events:none}
+.mp-wallet::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-90px;top:-110px;border:1px solid rgba(255,255,255,.14);box-shadow:0 0 0 38px rgba(255,255,255,.03),0 0 0 78px rgba(255,255,255,.02);pointer-events:none}
+.mp-w-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between}
+.mp-w-brand{display:flex;align-items:center;gap:10px;font:800 15px/1 'Sora',sans-serif;letter-spacing:.2px}
+.mp-w-logo{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28)}
+.mp-w-logo svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.mp-w-nfc{width:28px;height:28px;stroke:rgba(255,255,255,.8);fill:none;stroke-width:1.8;stroke-linecap:round}
+.mp-w-mid{position:relative;z-index:2;margin:18px 0 14px}
+.mp-w-chip{width:44px;height:33px;border-radius:8px;margin-bottom:16px;background:linear-gradient(135deg,#ffe9a8,#d9ad3c 55%,#f6d77a);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18);position:relative;overflow:hidden}
+.mp-w-chip::before,.mp-w-chip::after{content:"";position:absolute;background:rgba(0,0,0,.2)}
+.mp-w-chip::before{left:0;right:0;top:50%;height:1px}.mp-w-chip::after{top:0;bottom:0;left:33%;width:1px;box-shadow:14px 0 0 rgba(0,0,0,.2)}
+.mp-w-label{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.mp-w-eye{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);color:#fff;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;cursor:pointer;padding:0}
+.mp-w-eye svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.mp-w-amt{font:800 clamp(30px,8vw,42px)/1.1 'Sora',sans-serif;letter-spacing:-.5px;margin-top:6px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
+.mp-w-bot{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.mp-w-holder small{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px}
+.mp-w-holder b{font:700 14px/1.2 'Plus Jakarta Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.mp-w-add{display:inline-flex;align-items:center;gap:7px;background:#fff;color:#00508f!important;font-weight:800;font-size:13px;padding:10px 16px;border-radius:12px;text-decoration:none!important;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);transition:transform .15s}
+.mp-w-add:hover{transform:translateY(-2px)}
+.mp-w-add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round}
+
+/* ---------- FAQ ---------- */
+.mp-faq{max-width:760px;margin:0 auto;display:grid;gap:12px}
+.mp-faq .faq-item{border-radius:16px;background:var(--card);border:1px solid var(--border)}
+.mp-faq .faq-item.open{border-color:rgba(0,180,248,.5)}
+.mp-faq .faq-q{padding:18px 20px;font-size:15px}
+
+/* ---------- CTA band ---------- */
+.mp-cta-band{position:relative;overflow:hidden;border-radius:30px;padding:60px 28px;text-align:center;color:#fff;margin:0 auto;
+  background:radial-gradient(500px 280px at 90% 0,rgba(126,226,255,.4),transparent 60%),linear-gradient(130deg,#06203f,#003d73 55%,#0084d6)}
+.mp-cta-band h2{font:800 clamp(26px,5vw,42px)/1.1 'Sora',sans-serif;margin:0 0 12px;color:#fff;letter-spacing:-.02em}
+.mp-cta-band p{margin:0 auto 26px;max-width:480px;color:#cfe9f7;font-size:16px;line-height:1.6}
+.mp-cta-band .mp-cta{justify-content:center}
+
+/* ---------- logged-in home extras ---------- */
+.mp-quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+@media(min-width:760px){.mp-quick{grid-template-columns:repeat(6,1fr)}}
+.mp-quick a{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 8px;border-radius:18px;background:var(--card);border:1px solid var(--border);color:var(--t1)!important;font-weight:700;font-size:13px;text-decoration:none!important;transition:all .2s}
+.mp-quick a:hover{border-color:var(--mp-a);transform:translateY(-3px);box-shadow:0 14px 28px -16px var(--mp-glow)}
+.mp-quick .mp-ic{margin:0;width:44px;height:44px;border-radius:13px}.mp-quick .mp-ic svg{width:21px;height:21px}
+.mp-two{display:grid;gap:22px}@media(min-width:900px){.mp-two{grid-template-columns:1fr 1fr}}
+.mp-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--mp-radius);padding:26px}
+.mp-panel .sec-label{margin-bottom:6px}.mp-panel .sec-h2{font-size:22px;margin-bottom:18px}
+#page-home .top-buyers-grid{grid-template-columns:1fr;margin-top:0}
+#page-home .live-stats-sec{padding:0}
+#page-home .live-stats-sec .section-wrap{padding:0}
+#page-home .latest-section,#page-home .tools-prev-section{padding:40px 0}
+#page-home .sec-h2{font-family:'Sora',sans-serif;letter-spacing:-.02em}
+#page-home .cat-tiles-section{padding:20px 0}
+
+/* ---------- AUTH (login + register) ---------- */
+#page-login .auth-bg,#page-register .auth-bg{min-height:calc(100vh - 64px);padding:32px 18px;background:
+  radial-gradient(800px 460px at 85% -10%,rgba(0,180,248,.22),transparent 60%),
+  radial-gradient(640px 420px at -10% 100%,rgba(0,132,214,.18),transparent 60%)}
+.ms-auth-shell{width:100%;max-width:980px;display:grid;background:var(--card);border:1px solid var(--border2);border-radius:28px;overflow:hidden;box-shadow:0 40px 90px -40px rgba(0,0,0,.55)}
+@media(min-width:880px){.ms-auth-shell{grid-template-columns:.9fr 1.1fr}}
+.ms-auth-side{display:none;position:relative;overflow:hidden;padding:44px 38px;color:#fff;flex-direction:column;justify-content:space-between;
+  background:radial-gradient(420px 300px at 110% -10%,rgba(126,226,255,.5),transparent 60%),radial-gradient(360px 260px at -20% 110%,rgba(0,180,248,.4),transparent 60%),linear-gradient(150deg,#06203f,#003d73 60%,#0084d6)}
+@media(min-width:880px){.ms-auth-side{display:flex}}
+.ms-auth-side::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1px);background-size:22px 22px;opacity:.5;pointer-events:none}
+.ms-auth-side>*{position:relative;z-index:1}
+.ms-as-brand{display:flex;align-items:center;gap:12px;font:800 20px/1 'Sora',sans-serif}
+.ms-as-brand .mp-w-logo{width:42px;height:42px;border-radius:13px}
+.ms-auth-side h2{font:800 30px/1.15 'Sora',sans-serif;margin:34px 0 12px;letter-spacing:-.02em;color:#fff}
+.ms-auth-side p{margin:0;color:#cfe9f7;line-height:1.65;font-size:15px}
+.ms-as-list{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px}
+.ms-as-list li{display:flex;gap:12px;align-items:center;font-weight:700;font-size:14.5px}
+.ms-as-list li span{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22)}
+.ms-as-list svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ms-as-foot{font-size:12.5px;color:#a9d6ee;display:flex;align-items:center;gap:8px}
+.ms-as-foot svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+#page-login .auth-card,#page-register .auth-card{max-width:none;border:0;border-radius:0;background:transparent;padding:40px 34px}
+@media(max-width:480px){#page-login .auth-card,#page-register .auth-card{padding:30px 20px}}
+.ms-auth-head{margin-bottom:22px}
+.ms-auth-head .ms-mobile-brand{display:inline-flex;align-items:center;gap:9px;font:800 16px/1 'Sora',sans-serif;color:var(--mp-a);margin-bottom:14px}
+@media(min-width:880px){.ms-auth-head .ms-mobile-brand{display:none}}
+.ms-mobile-brand svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#page-login .auth-card h2,#page-register .auth-card h2{text-align:left;font:800 28px/1.15 'Sora',sans-serif;letter-spacing:-.02em;margin:0 0 6px}
+#page-login .auth-sub,#page-register .auth-sub{text-align:left;margin:0;font-size:14.5px}
+#page-login .auth-brand,#page-register .auth-brand{display:none}
+#page-login .auth-home-btn,#page-register .auth-home-btn{margin-bottom:14px}
+#page-login .fg input,#page-register .fg input,#page-register .fg select{height:50px;border-radius:13px;font-size:15px;padding:0 16px;background:var(--bg3,var(--bg4));border:1.5px solid var(--border2)}
+#page-login .fg input:focus,#page-register .fg input:focus{border-color:var(--mp-a);box-shadow:0 0 0 4px rgba(0,180,248,.15);background:var(--card)}
+#page-login .fg label,#page-register .fg label{font-size:12.5px;font-weight:700;color:var(--t1);margin-bottom:7px;letter-spacing:.01em}
+#page-login .btn-primary.btn-full,#page-register .btn-primary.btn-full{height:52px;border-radius:14px;font-size:15.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--mp-a),var(--mp-a2));box-shadow:0 14px 30px -12px rgba(0,180,248,.8);margin-top:6px}
+#page-login .btn-primary.btn-full:hover,#page-register .btn-primary.btn-full:hover{background:linear-gradient(135deg,#19c1ff,var(--mp-a2))}
+#page-login .google-btn-link,#page-register .google-btn-link{height:50px;border-radius:13px;border:1.5px solid var(--border2);font-weight:700}
+#page-login .auth-switch a,#page-register .auth-switch a,#page-register .terms-check a{color:var(--mp-a);font-weight:700}
+.ms-pw{position:relative}
+.ms-pw input{padding-right:48px!important}
+.ms-pw .ms-eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:10px;border:0;background:transparent;color:var(--t2);cursor:pointer;display:grid;place-items:center}
+.ms-pw .ms-eye:hover{color:var(--mp-a)}
+.ms-pw .ms-eye svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ms-meter{height:5px;border-radius:99px;background:var(--border2);margin-top:9px;overflow:hidden}
+.ms-meter i{display:block;height:100%;width:0;border-radius:99px;transition:width .25s,background .25s}
+.ms-meter-t{font-size:11.5px;font-weight:700;margin-top:6px;color:var(--t2);min-height:15px}
+.ms-reg-grid{display:grid;gap:0 14px}@media(min-width:640px){.ms-reg-grid{grid-template-columns:1fr 1fr}}
+
+/* ---------- DASHBOARD ---------- */
+.mz-container{max-width:700px}
+.mz-nav{padding:18px 4px 12px}
+.mz-user-pill{padding:6px 16px 6px 6px}
+.mz-avatar{width:40px;height:40px;background:linear-gradient(135deg,#19c1ff,#0084d6);box-shadow:0 6px 16px -6px rgba(0,180,248,.7)}
+.mz-hero.mp-wallet{margin:10px auto 6px;max-width:none;border-radius:28px;padding:26px 26px 22px;min-height:236px}
+.mz-hero.mp-wallet::after{display:block}
+.mz-actions-grid{gap:12px;margin:18px 0 22px}
+.mz-tile{padding:16px 6px 14px;border-radius:18px;position:relative;overflow:hidden}
+.mz-tile::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,180,248,.08),transparent 55%);opacity:0;transition:opacity .2s}
+.mz-tile:hover::before{opacity:1}
+.mz-tile-icon{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,rgba(0,180,248,.2),rgba(0,132,214,.34));box-shadow:inset 0 0 0 1px rgba(0,180,248,.18)}
+.mz-tile-label{font-weight:800;font-size:12.5px}
+.mz-section{border-radius:22px}
+@media(max-width:420px){.mz-actions-grid.ms-grid6{gap:8px}.ms-grid6 .mz-tile-sub{display:none}}
+
+/* ---------- provider order ID (marketplace purchases) ---------- */
+.pc-oid{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 12px;padding:11px 14px;border-radius:12px;background:rgba(0,180,248,.08);border:1px dashed rgba(0,180,248,.45)}
+.pc-oid>span{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mp-a)}
+.pc-oid code{flex:1;min-width:120px;font:700 13.5px/1.3 'JetBrains Mono',ui-monospace,monospace;color:var(--t1);word-break:break-all;background:none;padding:0}
+.pc-oid-copy{border:1px solid var(--mp-a);background:transparent;color:var(--mp-a);font-weight:800;font-size:12px;padding:6px 12px;border-radius:9px;cursor:pointer}
+.pc-oid-copy:hover{background:var(--mp-a);color:#fff}
+
+/* ---------- small-screen polish ---------- */
+@media(max-width:600px){.mp-sec{padding:52px 0}.mp-wrap{padding:0 16px}.mp-lead{font-size:15.5px}.mp-btn{padding:14px 20px;width:100%}.mp-cta .mp-btn{flex:1 1 100%}}
+
+/* ---------- navbar fit (prevents wrapping / sideways scroll) ---------- */
+.nav-inner{gap:12px}
+.nav-center{gap:0;flex-wrap:nowrap;min-width:0}
+.nav-link{white-space:nowrap;padding:7px 9px;font-size:13px}
+@media(max-width:1240px){.brand-full{display:none!important}}
+@media(max-width:1060px){.nav-link{padding:7px 7px;font-size:12.5px}}
+html,body{overflow-x:hidden}
+
+/* ---------- mobile fixes ---------- */
+@media(max-width:759px){
+  .mp-stats:not(.mp-stats--4) .mp-stat:last-child{grid-column:1/-1}
+}
+@media(max-width:520px){
+  .nav-inner{padding:0 10px;gap:6px}
+  .nav-guest{gap:6px}
+  .btn-nav-login,.btn-nav-reg{padding:8px 11px;font-size:12px;white-space:nowrap}
+  .nav-brand .brand-ksl{font-size:16px}
+  .nav-brand{min-width:0}
+}
+@media(max-width:1500px){.brand-full{display:none!important}.nav-link{padding:7px 7px;font-size:12.5px}}
+@media(max-width:1180px){.nav-link{padding:6px 5px;font-size:12px}}
+@media(min-width:900px) and (max-width:1500px){.nav-brand .brand-ksl,.nav-brand .brand-verified{display:none}}
+
+</style>
+</head>
+<body>
+<div id="pageLoadBar" class="page-load-bar"></div>
+<div id="dbfl-overlay" class="dbfl-overlay">
+  <div class="dbfl-brand">
+    <div class="dbfl-crown-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M3 17 5.5 6l4.5 5 3-8 3 8 4.5-5L23 17H3Z"/></svg></div>
+    <div class="dbfl-ring"></div>
+  </div>
+  <div class="dbfl-text" id="dbfl-text">Loading…</div>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa-logo" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.79 14.09c-.24.68-1.4 1.3-1.93 1.35-.5.06-1.13.08-1.83-.11-.42-.12-.96-.3-1.66-.6-2.92-1.26-4.82-4.2-4.97-4.4-.15-.19-1.19-1.58-1.19-3.01 0-1.44.75-2.14 1.02-2.44.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2.01.9 2.15.07.15.12.32.02.51-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.27.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.37-.22.62-.13.25.09 1.6.75 1.87.89.27.13.45.2.51.31.06.11.06.66-.18 1.34z"/>
+  </symbol>
+  <symbol id="ic-bolt" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 3 4.5 5.5V11c0 5 3.2 8.4 7.5 10 4.3-1.6 7.5-5 7.5-10V5.5L12 3Z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4.5"/></symbol>
+  <symbol id="ic-badge" viewBox="0 0 24 24"><circle cx="12" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m9 10 2 2 4-4.2M8 16.5 6.5 21 12 18.5 17.5 21 16 16.5"/></symbol>
+  <symbol id="ic-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v11H8l-4 4V5Z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8 9h8M8 12.5h5"/></symbol>
+  <symbol id="ic-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7"/></symbol>
+  <symbol id="ic-return" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 8h11a4.5 4.5 0 0 1 0 9h-6"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="m11 4-4 4 4 4"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></g></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M13 5l7 7-7 7"/></g></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H4M11 5l-7 7 7 7"/></g></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 13l7 7 7-7"/></g></symbol>
+  <symbol id="i-x-circle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/></g></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/></g></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h16l1-9-5 4-4-7-4 7-5-4z"/></g></symbol>
+  <symbol id="i-message-circle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 01-11.9 7.8L4 21l1.2-5A8.5 8.5 0 1121 12z"/></g></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6M8 12L5.5 14.5a3.5 3.5 0 004.9 4.9L13 17"/><path d="M16 12l2.5-2.5a3.5 3.5 0 00-4.9-4.9L11 7"/></g></symbol>
+  <symbol id="i-smartphone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></g></symbol>
+  <symbol id="i-credit-card" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></g></symbol>
+  <symbol id="i-package" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></g></symbol>
+  <symbol id="i-gamepad" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="4"/><path d="M7 10v4M5 12h4M15 11h.01M18 13h.01"/></g></symbol>
+  <symbol id="i-alert-triangle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></g></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12"/><path d="M3 9h18M12 9v12M12 9c-2-4-6-4-6-1s3 1 6 1M12 9c2-4 6-4 6-1s-3 1-6 1"/></g></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 015.7 5l-5 5-2.4-2.4-5 5a2 2 0 01-2.8-2.8l5-5L7.8 8.7a4 4 0 015-5.7L10 6l1 1z"/></g></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0M16 8a3 3 0 010 6M21 20a6 6 0 00-6-6.5"/></g></symbol>
+  <symbol id="i-scroll" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H19v14a3 3 0 01-3 3H8a3 3 0 003-3V6a3 3 0 00-3-3z"/><path d="M8 3a3 3 0 00-3 3v11a3 3 0 003 3"/></g></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M3 4h2l2.6 12.6a2 2 0 002 1.4h8.6a2 2 0 002-1.6L22 8H6"/></g></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 6l9 7 9-7"/></g></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0112 0v5l2 3H4l2-3z"/><path d="M10 20a2 2 0 004 0"/></g></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6M15 2v6M6 8h12v3a6 6 0 01-6 6 6 6 0 01-6-6z"/><path d="M12 17v5"/></g></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.6 7.6 0 000-2l2-1.5-2-3.5-2.4 1a7.6 7.6 0 00-1.7-1l-.3-2.5h-4l-.3 2.5a7.6 7.6 0 00-1.7 1l-2.4-1-2 3.5 2 1.5a7.6 7.6 0 000 2l-2 1.5 2 3.5 2.4-1a7.6 7.6 0 001.7 1l.3 2.5h4l.3-2.5a7.6 7.6 0 001.7-1l2.4 1 2-3.5z"/></g></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></g></symbol>
+  <symbol id="i-ban" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></g></symbol>
+  <symbol id="i-book-open" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-8-1v13c3-1 6-.5 8 1 2-1.5 5-2 8-1V5c-3-1-6-.5-8 1z"/><path d="M12 6v14"/></g></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></g></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v4a4 4 0 01-8 0z"/><path d="M6 5H4v2a3 3 0 003 3M18 5h2v2a3 3 0 01-3 3"/><path d="M10 15h4v3h-4zM8 21h8"/></g></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h11l3 3v15H5z"/><path d="M8 3v6h8V3M7 21v-7h10v7"/></g></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6a1 1 0 011-1h5l2 2h9a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.6 4.8L18 8l-4.4 1.6L12 14l-1.6-4.4L6 8l4.4-1.2z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></g></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h13a1 1 0 011 1v3"/><path d="M3 7v11a2 2 0 002 2h14a1 1 0 001-1v-6a1 1 0 00-1-1h-4a2 2 0 000 4h5"/></g></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5.5-5.5L4 21"/></g></symbol>
+  <symbol id="i-dot" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/></g></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></g></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 1 5 5 5 9 0 3-1 5-2 6l-3 3-3-3c-1-1-2-3-2-6 0-4 2-8 5-9z"/><circle cx="12" cy="9" r="2"/><path d="M9 17l-3 4M15 17l3 4"/></g></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></g></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v-2a9 9 0 0118 0v2"/><rect x="2" y="14" width="5" height="7" rx="1.5"/><rect x="17" y="14" width="5" height="7" rx="1.5"/><path d="M20 21a4 4 0 01-4 3h-2"/></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></g></symbol>
+  <symbol id="i-bank" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M10 10v9M14 10v9M19 10v9"/><path d="M3 21h18"/></g></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 6l4 4"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14A8 8 0 1110 4a6.5 6.5 0 0010 10z"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></g></symbol>
+  <symbol id="i-medal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="6"/><path d="M9 3l3 6 3-6"/><path d="M10.5 13.5l1.5 3 1.5-3"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></g></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M12 2v4M9 3.5l1.5 1.5M15 3.5l-1.5 1.5"/><circle cx="9" cy="14" r="1.3"/><circle cx="15" cy="14" r="1.3"/></g></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6"/><path d="M20 20v-6h-6"/><path d="M5 15a8 8 0 0014-4M19 9A8 8 0 005 13"/></g></symbol>
+  <symbol id="i-headphones" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="2" y="14" width="5" height="6" rx="1.5"/><rect x="17" y="14" width="5" height="6" rx="1.5"/></g></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h4l7 4V6l-7 4z"/><path d="M17 9a4 4 0 010 6"/></g></symbol>
+  <symbol id="i-banknote" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9v.01M18 15v.01"/></g></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l2 2M14 9l2 2"/></g></symbol>
+  <symbol id="i-folder-open" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a1 1 0 011-1h5l2 2h8a1 1 0 011 1l-2 8H5z"/></g></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></g></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-5-5"/></g></symbol>
+  <symbol id="i-paperclip" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12l6-6a3 3 0 014 4l-8 8a5 5 0 01-7-7l7-7"/></g></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l3 3v10l-3 3H7l-3-3V7z"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2 1a12 12 0 006 6l1-2 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></g></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16V11l2-5h12l2 5v5"/><rect x="2" y="16" width="20" height="3" rx="1"/><circle cx="7" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></g></symbol>
+  <symbol id="i-mouse" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="5"/><path d="M12 3v6"/></g></symbol>
+  <symbol id="i-bar-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></g></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></g></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 20h16"/></g></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14M5 15h14M10 4L8 20M16 4l-2 16"/></g></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h13l-3 4 3 4H5"/></g></symbol>
+  <symbol id="i-at-sign" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 12v1.5a2.5 2.5 0 005 0V12a9 9 0 10-4 7.5"/></g></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></g></symbol>
+  <symbol id="i-ghost" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11a7 7 0 0114 0v9l-2.5-2-2 2-2.5-2-2 2-2.5-2z"/><circle cx="9.5" cy="10.5" r="1"/><circle cx="14.5" cy="10.5" r="1"/></g></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 01-1-8.9A5.5 5.5 0 0116.5 7 4.5 4.5 0 0117 16H7z"/></g></symbol>
+  <symbol id="i-disc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></g></symbol>
+</svg>
+<!-- Single consolidated Support button — everything (community, channel, owner, telegram, Mizzy Sales
+     Assistant) lives behind one icon so nothing floats loose over the bottom nav on mobile. -->
+<div id="supportFab" class="support-fab">
+  <div class="sfab-menu" id="sfabMenu">
+    <button type="button" class="sfab-item" onclick="toggleAiChatFab();toggleSupportFab()"><svg class="icon i-message-circle" aria-hidden="true"><use href="#i-message-circle"/></svg> Mizzy Sales Assistant</button>
+    <a href="https://chat.whatsapp.com/HBqJeik773M1pqEmIjfpXr" data-link="group" target="_blank" class="sfab-item"><svg class="wa-icon" aria-hidden="true"><use href="#wa-logo"/></svg> Join Community</a>
+    <a href="https://whatsapp.com/channel/0029Vb7ivq9HLHQcS4XgQu2Q" data-link="channel" target="_blank" class="sfab-item"><svg class="wa-icon" aria-hidden="true"><use href="#wa-logo"/></svg> Join Channel</a>
+    <a href="https://t.me/klslogs" data-link="telegram" target="_blank" class="sfab-item"><svg class="icon i-send" aria-hidden="true"><use href="#i-send"/></svg> Telegram</a>
+    <a href="https://wa.me/2349065518402" data-link="contact" target="_blank" class="sfab-item sfab-item-primary"><svg class="wa-icon" aria-hidden="true"><use href="#wa-logo"/></svg> Contact Owner</a>
+  </div>
+  <button type="button" class="sfab-toggle" onclick="toggleSupportFab()" aria-label="Support"><svg class="icon i-headset" aria-hidden="true"><use href="#i-headset"/></svg></button>
+</div>
+<div class="modal-overlay" id="aiChatOverlay">
+  <div class="modal-box" style="max-width:380px;padding:0;display:flex;flex-direction:column;height:min(560px,80vh)">
+ <button class="modal-x" onclick="toggleAiChatFab()"><svg class="icon i-x" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div style="padding:20px 20px 12px;border-bottom:1px solid var(--border)">
+      <h3 style="margin:0">Mizzy Sales Assistant</h3>
+      <p style="color:var(--t2);font-size:12.5px;margin:4px 0 0">Ask about deposits, purchases, refunds, and more</p>
+    </div>
+    <div id="aiChatFabLog" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:16px 20px"></div>
+    <div id="aiChatQuickTopics" style="display:flex;gap:6px;flex-wrap:wrap;padding:0 20px 12px"></div>
+    <div style="display:flex;gap:8px;padding:14px 20px;border-top:1px solid var(--border)">
+      <input type="text" id="aiChatFabInput" placeholder="Type a question…" style="flex:1" onkeydown="if(event.key==='Enter')sendAiChatFab()"/>
+      <button class="btn-primary" style="padding:10px 16px" onclick="sendAiChatFab()">Send</button>
+    </div>
+  </div>
+</div>
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('home')">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+          <path d="M3 17 5.5 6l4.5 5 3-8 3 8 4.5-5L23 17H3Z"/>
+          <path d="M3 17h18v2H3z" fill="currentColor" stroke="none" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="brand-words">
+        <span class="brand-ksl">Mizzy Sales<svg class="brand-verified" viewBox="0 0 24 24" aria-label="Verified" role="img"><path fill="#1d9bf0" d="M12 1.5 14.3 4l3.4-.4 1 3.3 3.1 1.5-1.2 3.2 1.2 3.2-3.1 1.5-1 3.3-3.4-.4L12 22.5 9.7 20l-3.4.4-1-3.3L2.2 15.6 3.4 12.4 2.2 9.2l3.1-1.5 1-3.3L9.7 4 12 1.5Z"/><path fill="#fff" d="m10.8 15.3-3-3 1.3-1.3 1.7 1.7 4.1-4.2 1.4 1.3-5.5 5.5Z"/></svg></span>
+        <span class="brand-full">Logs • SMS Verification • Digital Services</span>
+      </div>
+    </div>
+    <div class="nav-center" id="navCenter">
+      <a class="nav-link" href="#" onclick="showPage('home')">Home</a>
+      <a class="nav-link" href="/marketplace">Marketplace</a>
+      <a class="nav-link" href="/tools">Tools & FMT</a>
+      <a class="nav-link" href="#" onclick="showPage('wallet')">Wallet</a>
+      <a class="nav-link" href="/games">Games</a>
+      <a class="nav-link" href="/buy-number">Numbers</a>
+      <a class="nav-link" href="/boost">Boost</a>
+      <a class="nav-link" href="/giveaways">Giveaways</a>
+      <a class="nav-link" href="/groups">Groups</a>
+      <a class="nav-link" href="/messages">DMs</a>
+      <a class="nav-link" href="/support">Support</a>
+    </div>
+    <div class="nav-right">
+      <div id="navGuest" class="nav-guest">
+        <button class="btn-nav-login" onclick="showPage('login')">Login</button>
+        <button class="btn-nav-reg" onclick="showPage('register')">Get Started</button>
+      </div>
+      <div id="navUser" class="nav-user-area" style="display:none">
+        <button class="nav-balance-btn" onclick="showPage('deposit')">
+ <span class="bal-icon"><svg class="icon i-credit-card" aria-hidden="true"><use href="#i-credit-card"/></svg></span>
+          <span><span id="navBalance">₦0.00</span></span>
+        </button>
+      </div>
+      <div class="theme-toggle-wrap">
+        <button class="theme-btn" id="themeBtn" onclick="toggleThemeSimple()" title="Toggle theme" aria-label="Toggle theme">
+          <svg id="themeBtnIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+      <a href="https://wa.me/2349065518402" data-link="contact" target="_blank" class="nav-wa-btn nav-hide-sm" title="Chat with us on WhatsApp" aria-label="WhatsApp">
+        <svg class="wa-icon"><use href="#wa-logo"/></svg>
+      </a>
+      <div class="notif-wrap" id="notifWrap" style="display:none">
+        <button class="notif-btn" id="notifBtn" onclick="showPage('notifications')" title="Notifications" aria-label="Notifications">
+ <svg class="icon i-bell" aria-hidden="true"><use href="#i-bell"/></svg>
+          <span class="notif-badge" id="notifBadge" style="display:none">0</span>
+        </button>
+        <div class="notif-menu" id="notifMenu">
+          <div class="notif-menu-header">Notifications</div>
+          <div id="notifList" class="notif-list"><div class="notif-empty">No new notifications</div></div>
+        </div>
+      </div>
+      <div class="nav-avatar-wrap" id="navAvatarWrap" style="display:none">
+        <button class="nav-avatar" id="navAvatarBtn" onclick="toggleUserMenu()">
+          <img id="navAvatarImg" src="" style="display:none" alt="Profile" onerror="this.style.display='none';document.getElementById('navInitial').style.display='block'"/>
+          <span id="navInitial">U</span>
+        </button>
+        <div class="nav-dropdown" id="navDropdown">
+          <div class="dropdown-header">
+            <img id="dropAvatarImg" src="" style="display:none" class="dropdown-avatar" alt="Profile" onerror="this.style.display='none'"/>
+            <div class="dh-name" id="dropName">User</div>
+            <div class="dh-email" id="dropEmail">email</div>
+          </div>
+          <div class="dropdown-divider"></div>
+ <a class="dd-item" href="#" onclick="showPage('wallet')"><span><svg class="icon i-credit-card" aria-hidden="true"><use href="#i-credit-card"/></svg></span> Wallet</a>
+ <a class="dd-item" href="#" onclick="showPage('deposit')"><span><svg class="icon i-credit-card" aria-hidden="true"><use href="#i-credit-card"/></svg></span> Deposit Funds</a>
+ <a class="dd-item" href="/referrals"><span><svg class="icon i-link" aria-hidden="true"><use href="#i-link"/></svg></span> Referrals</a>
+ <a class="dd-item" href="/purchases"><span><svg class="icon i-package" aria-hidden="true"><use href="#i-package"/></svg></span> My Purchases</a>
+ <a class="dd-item" href="/transactions"><span><svg class="icon i-clipboard" aria-hidden="true"><use href="#i-clipboard"/></svg></span> Transactions</a>
+ <a class="dd-item" href="/api-docs"><span><svg class="icon i-plug" aria-hidden="true"><use href="#i-plug"/></svg></span> API Docs</a>
+ <a class="dd-item" href="/settings"><span><svg class="icon i-settings" aria-hidden="true"><use href="#i-settings"/></svg></span> Settings</a>
+ <a class="dd-item" href="#" onclick="showPage('terms')"><span><svg class="icon i-scroll" aria-hidden="true"><use href="#i-scroll"/></svg></span> Terms &amp; Conditions</a>
+          <div class="dropdown-divider"></div>
+ <a class="dd-item dd-logout" href="#" onclick="logout()"><span><svg class="icon i-logout" aria-hidden="true"><use href="#i-logout"/></svg></span> Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</nav>
+<main id="app">
+<div id="adBanner" class="ad-banner" style="display:none"></div>
+<div id="page-home" class="page active">
+  <section class="mp-hero" aria-labelledby="homeHeroTitle"><div class="mp-wrap">
+    <div class="mp-hero-grid" style="padding-bottom:26px">
+      <div>
+        <span class="mp-eyebrow"><i></i> Trusted seller</span>
+        <h1 class="mp-h1" id="homeHeroTitle">Your digital marketplace, <em>ready when you are.</em></h1>
+        <p class="mp-lead">Find verified accounts, SMS numbers, boosting and digital tools in one place. Shop with confidence and get help whenever you need it.</p>
+        <div class="mp-cta"><a href="/marketplace" class="mp-btn mp-btn--p">Explore marketplace <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></a><a href="/buy-number" class="mp-btn mp-btn--g">Buy a number</a></div>
+        <div class="mp-trust"><span><b>✓</b> Trust guarantee</span><span><b>✓</b> Instant delivery</span><span><b>✓</b> Worldwide access</span></div>
+      </div>
+      <div class="mp-stats mp-stats--4" style="align-self:center">
+        <div class="mp-stat"><b id="homeStatUsers">—</b><span>Members</span></div>
+        <div class="mp-stat"><b id="homeStatLogs">—</b><span>Listings</span></div>
+        <div class="mp-stat"><b id="homeStatVisitors">—</b><span>Visitors</span></div>
+        <div class="mp-stat"><b id="homeStatActiveNow">—</b><span>Active now</span></div>
+      </div>
+    </div>
+    <div class="mp-quick" aria-label="Quick links"><a href="/marketplace"><span class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a1 1 0 001 .8h9.2a1 1 0 001-.8L21 8H6"/></svg></span>Marketplace</a><a href="/buy-number"><span class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>Numbers</a><a href="/boost"><span class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>Boost</a><a href="/tools"><span class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 015.7 5l-5 5-2.4-2.4-5 5a2 2 0 01-2.8-2.8l5-5-2.4-2.4"/></svg></span>Tools</a><a href="/giveaways"><span class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 9h18M12 9v12M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"/></svg></span>Giveaways</a><a href="/referrals"><span class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0M16 8a3 3 0 010 6M18 20a6 6 0 00-3-5"/></svg></span>Referrals</a></div>
+    <nav class="hero-links-row" aria-label="Ways to connect" style="padding:26px 0 34px">
+      <a href="https://whatsapp.com/channel/0029Vb7ivq9HLHQcS4XgQu2Q" data-link="channel" target="_blank" rel="noopener noreferrer" class="hlink">WhatsApp channel ↗</a>
+      <a href="https://chat.whatsapp.com/HBqJeik773M1pqEmIjfpXr" data-link="group" target="_blank" rel="noopener noreferrer" class="hlink">Community ↗</a>
+      <a href="https://wa.me/2349065518402" data-link="contact" target="_blank" rel="noopener noreferrer" class="hlink">Contact admin ↗</a>
+    </nav>
+  </div></section>
+
+  <section class="live-stats-sec" id="liveStatsSec"><div class="mp-wrap">
+    <div class="ls-head"><span class="ls-live"><span class="ls-dot"></span> LIVE</span><span class="ls-title">Activity in the last 24 hours</span></div>
+    <div class="ls-grid">
+      <div class="ls-card"><div class="ls-num" id="lsPurchases">—</div><div class="ls-label">Purchases</div></div>
+      <div class="ls-card"><div class="ls-num" id="lsPurchaseVol">—</div><div class="ls-label">Spent by buyers</div></div>
+      <div class="ls-card"><div class="ls-num" id="lsDeposits">—</div><div class="ls-label">Deposits</div></div>
+      <div class="ls-card"><div class="ls-num" id="lsDepositVol">—</div><div class="ls-label">Funded to wallets</div></div>
+    </div>
+    <div class="ls-feed" id="lsFeed"></div>
+  </div></section>
+
+  <section class="active-now-strip" id="activeNowStrip" style="display:none"><div class="section-wrap">
+    <div class="an-header"><svg class="icon i-dot" aria-hidden="true"><use href="#i-dot"/></svg> <span id="activeNowCount">0</span> members active in the last 24 hours</div>
+    <div class="an-avatars" id="activeNowAvatars"></div>
+  </div></section>
+
+  <section class="mp-sec mp-sec--tight"><div class="mp-wrap">
+    <div class="mp-head"><span class="mp-eyebrow">Browse</span><h2 class="mp-h2">Pick a category, see the logs</h2><p class="mp-sub">Login, server, WhatsApp and everything else — tap a category to jump straight to its listings.</p></div>
+    <div class="cat-tiles" id="homeCatTiles"><div class="spin" style="margin:20px auto"></div></div>
+  </div></section>
+
+  <section class="latest-section"><div class="mp-wrap">
+    <div class="sec-row"><div><div class="sec-label">Fresh stock</div><h2 class="sec-h2" style="margin-bottom:0">Latest listings</h2></div>
+      <button class="sec-more" onclick="window.location.href='/marketplace'">View all <svg class="icon i-arrow-right" aria-hidden="true"><use href="#i-arrow-right"/></svg></button></div>
+    <div class="cards-grid" id="homeGrid"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
+  </div></section>
+  <!-- One row per category, filled in by initHome() from the same /api/logs data -->
+  <div id="homeCategorySections"></div>
+
+  <section class="tools-prev-section"><div class="mp-wrap">
+    <div class="sec-row"><div><div class="sec-label">Digital tools</div><h2 class="sec-h2" style="margin-bottom:0">Tools &amp; resources</h2></div>
+      <button class="sec-more" onclick="window.location.href='/tools'">View all <svg class="icon i-arrow-right" aria-hidden="true"><use href="#i-arrow-right"/></svg></button></div>
+    <div class="cards-grid" id="homeToolsGrid"><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
+  </div></section>
+
+  <section class="mp-sec mp-band"><div class="mp-wrap">
+    <div class="mp-head mp-head--c"><span class="mp-eyebrow">What Mizzy Sales offers</span><h2 class="mp-h2">Everything digital, in one account</h2><p class="mp-sub">Fund one wallet, then buy anything below at any hour. Every order is delivered to your account automatically.</p></div>
+    <div class="mp-grid mp-grid--3"><a class="mp-card" href="/marketplace" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a1 1 0 001 .8h9.2a1 1 0 001-.8L21 8H6"/></svg></div><h3>Verified accounts</h3><p>Tested before listing and delivered the second you pay.</p><span class="mp-go">Browse marketplace →</span></a><a class="mp-card" href="/buy-number" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div><h3>SMS verification numbers</h3><p>Rent a number for any app and receive the code live. No code, no charge.</p><span class="mp-go">Buy a number →</span></a><a class="mp-card" href="/boost" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Social media boosting</h3><p>Followers, likes and views across every major platform.</p><span class="mp-go">Start a boost →</span></a><a class="mp-card" href="/tools" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 015.7 5l-5 5-2.4-2.4-5 5a2 2 0 01-2.8-2.8l5-5-2.4-2.4"/></svg></div><h3>Digital tools</h3><p>Premium tools, software keys and resources to keep.</p><span class="mp-go">See tools →</span></a><a class="mp-card" href="/referrals" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0M16 8a3 3 0 010 6M18 20a6 6 0 00-3-5"/></svg></div><h3>Earn while you shop</h3><p>4% commission for life on referrals, plus badges and giveaways.</p><span class="mp-go">Get your link →</span></a><a class="mp-card" href="/support" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8.5 8.5 0 01-11.9 7.8L4 21l1.2-5A8.5 8.5 0 1121 12z"/></svg></div><h3>Real human support</h3><p>Live WhatsApp and an on-site assistant, day or night.</p><span class="mp-go">Open support →</span></a></div>
+  </div></section>
+
+  <section class="mp-sec"><div class="mp-wrap"><div class="mp-two">
+    <div class="mp-panel"><div class="sec-label">Top 10 buyers</div><h2 class="sec-h2">Our biggest customers</h2>
+      <div id="topBuyersList" class="top-buyers-grid"><div class="spin" style="margin:20px auto"></div></div></div>
+    <div class="mp-panel"><div class="sec-label">Achievements</div><h2 class="sec-h2">Earn badges as you go</h2>
+      <p style="color:var(--t2);font-size:14px;margin:-6px 0 16px">Spend, refer friends and play games to unlock badges — see them all on your <a href="/referrals" style="color:var(--mp-a);font-weight:700">Referrals page</a>.</p>
+      <div id="homeBadgesPreview" style="display:flex;flex-wrap:wrap;gap:10px"></div></div>
+  </div></div></section>
+
+  <section class="mp-sec mp-band"><div class="mp-wrap">
+    <div class="mp-head mp-head--c"><span class="mp-eyebrow">How it works</span><h2 class="mp-h2">Three steps, under two minutes</h2></div>
+    <div class="mp-steps">
+      <div class="mp-step"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></div><h3>Create your free account</h3><p>Sign up with your email — you instantly get your own wallet and a personal bank account number.</p></div>
+      <div class="mp-step"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M17 15h2"/></svg></div><h3>Fund your wallet</h3><p>Bank transfer, card or OPay in ₦ or $. Deposits confirm automatically in seconds.</p></div>
+      <div class="mp-step"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Buy and get it instantly</h3><p>Pick anything on the site. Delivery is automatic and everything you buy stays in My Purchases.</p></div>
+    </div>
+  </div></section>
+
+  <section class="mp-sec"><div class="mp-wrap">
+    <div class="mp-head mp-head--c"><span class="mp-eyebrow">FAQ</span><h2 class="mp-h2">Common questions</h2></div>
+    <div class="mp-faq faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How fast do I get my account/number after paying? <span class="faq-chev">⌄</span></button>
+          <div class="faq-a"><p>Instantly for most listings — the moment payment clears, delivery is automatic. Numbers work the same way: your wallet is only charged once a real number is actually issued to you.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What happens if a number doesn't receive a code? <span class="faq-chev">⌄</span></button>
+          <div class="faq-a"><p>You're automatically refunded — no code, no charge finalized. There's a visible countdown on every number order, and you can cancel for an instant refund any time before it arrives.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How do I fund my wallet? <span class="faq-chev">⌄</span></button>
+          <div class="faq-a"><p>Head to <a href="/deposit" style="color:var(--gold)">Deposit</a> and pay by bank transfer, card, or OPay. Your wallet is credited automatically once payment is confirmed — no manual approval, no waiting on us.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Are the accounts actually verified/working? <span class="faq-chev">⌄</span></button>
+          <div class="faq-a"><p>Every listing is tested before it goes up for sale. If something you bought doesn't work as described, reach out on WhatsApp — real issues get resolved, not ignored.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I get support if something goes wrong? <span class="faq-chev">⌄</span></button>
+          <div class="faq-a"><p>Yes — WhatsApp support is available directly from the nav bar on every page (the green icon), plus a support ticket form and live chat assistant on the <a href="/support" style="color:var(--gold)">Support page</a>.</p></div>
+        </div>
+      </div>
+  </div></section>
+
+  <section class="mp-sec" style="padding-top:10px"><div class="mp-wrap"><div class="mp-cta-band">
+    <h2>Ready to buy?</h2><p>Join hundreds of satisfied buyers on Mizzy Sales today.</p>
+    <div class="mp-cta"><a class="mp-btn mp-btn--w" href="/marketplace">Browse marketplace</a><a class="mp-btn mp-btn--o" href="https://wa.me/2349065518402" data-link="contact" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
+  </div></div></section>
+</div>
+<div id="page-market" class="page">
+  <div class="page-hero">
+ <div class="ph-chip"><svg class="icon i-cart" aria-hidden="true"><use href="#i-cart"/></svg> Marketplace</div>
+    <h1>Social Media Accounts</h1>
+    <p>Browse all verified account listings below</p>
+  </div>
+  <div class="section-wrap">
+    <div class="cat-dropdown-wrap">
+      <button class="cat-dropdown-btn" id="catDropdownBtn" onclick="toggleCatDropdown()">
+ <span id="catDropdownLabel"><svg class="icon i-folder-open" aria-hidden="true"><use href="#i-folder-open"/></svg> All Categories</span>
+        <span class="cat-dropdown-arrow">▾</span>
+      </button>
+      <div class="cat-dropdown-menu" id="catDropdownMenu">
+ <button class="cat-opt active" data-cat="all" onclick="filterMarket('all',this)"><svg class="icon i-folder-open" aria-hidden="true"><use href="#i-folder-open"/></svg> All Categories</button>
+      </div>
+    </div>
+    <div class="cards-grid" id="marketGrid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </div>
+</div>
+<div id="page-tools" class="page">
+  <div class="page-hero" style="background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(47,123,246,.08))">
+ <div class="ph-chip"><svg class="icon i-wrench" aria-hidden="true"><use href="#i-wrench"/></svg> Tools</div>
+    <h1>Digital Tools & Resources</h1>
+    <p>Unlimited-use tools — buy once and use as many times as you want</p>
+  </div>
+  <div class="section-wrap">
+    <div class="mkt-toolbar">
+      <div class="mkt-search-wrap">
+        <span class="mkt-search-icon"><svg class="icon i-search" aria-hidden="true"><use href="#i-search"/></svg></span>
+        <label class="bst-sr-only" for="toolsSearchInput">Search tools</label>
+        <input type="text" id="toolsSearchInput" placeholder="Search tools (e.g. VPN, checker, software)…" oninput="filterToolsGrid()"/>
+      </div>
+      <select id="toolsSortSelect" class="input-field" style="max-width:190px" onchange="filterToolsGrid()">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+      </select>
+    </div>
+    <p id="toolsResultCount" style="color:var(--t2);font-size:12.5px;margin:0 0 14px" role="status" aria-live="polite"></p>
+    <div class="cards-grid" id="toolsGrid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </div>
+</div>
+<script>
+/* Tools page: client-side search + sort over the cards script.js already rendered. */
+function filterToolsGrid(){
+  const grid=document.getElementById('toolsGrid'); if(!grid) return;
+  const q=(document.getElementById('toolsSearchInput')?.value||'').trim().toLowerCase();
+  const sort=document.getElementById('toolsSortSelect')?.value||'default';
+  const cards=[...grid.querySelectorAll('.prod-card-wrap')];
+  let shown=0;
+  cards.forEach(c=>{
+    const hit=!q || c.textContent.toLowerCase().includes(q);
+    c.style.display=hit?'':'none';
+    if(hit) shown++;
+  });
+  if(sort!=='default'){
+    const price=c=>parseFloat((c.querySelector('.prod-price')?.textContent||'').replace(/[^0-9.]/g,''))||0;
+    cards.sort((a,b)=>sort==='price-asc'?price(a)-price(b):price(b)-price(a)).forEach(c=>grid.appendChild(c));
+  }
+  const out=document.getElementById('toolsResultCount');
+  if(out) out.textContent = cards.length ? `${shown} tool${shown===1?'':'s'} shown` : '';
+}
+</script>
+<div id="page-wallet" class="page">
+  <div class="wal-wrap"><div class="spin" style="margin:60px auto"></div></div>
+</div>
+<div id="page-deposit" class="page">
+  <div class="dep-fragment-loading" id="depFragmentLoading">
+    <div class="spin" style="margin:40px auto"></div>
+  </div>
+</div>
+<div id="page-referrals" class="page">
+  <div class="dep-fragment-loading" id="refFragmentLoading">
+    <div class="spin" style="margin:40px auto"></div>
+  </div>
+</div>
+<div id="page-purchases" class="page">
+  <div class="page-hero">
+ <div class="ph-chip"><svg class="icon i-package" aria-hidden="true"><use href="#i-package"/></svg> My Purchases</div>
+    <h1>Purchase History</h1>
+    <p>All your purchased logs and tools</p>
+  </div>
+  <div class="section-wrap">
+    <div id="purchasesList"></div>
+  </div>
+</div>
+<div id="page-chat" class="page">
+  <div class="page-hero">
+ <div class="ph-chip"><svg class="icon i-message-circle" aria-hidden="true"><use href="#i-message-circle"/></svg> Community</div>
+    <h1>Chat</h1>
+    <p>Talk with other Mizzy Sales members, message people directly, and find game opponents</p>
+  </div>
+  <div class="section-wrap chat-wrap">
+    <div class="chat-mode-toggle" style="display:flex;gap:8px;margin-bottom:12px">
+ <button class="cat-opt active" id="chatModeGroupBtn" onclick="switchChatMode('group')"><svg class="icon i-users" aria-hidden="true"><use href="#i-users"/></svg> Group Chat</button>
+ <button class="cat-opt" id="chatModeDmBtn" onclick="switchChatMode('dm')"><svg class="icon i-mail" aria-hidden="true"><use href="#i-mail"/></svg> Direct Messages <span id="dmUnreadBadge" class="badge b-red" style="display:none;margin-left:4px"></span></button>
+    </div>
+    <div class="chat-layout" id="groupChatLayout">
+      <div class="chat-sidebar" id="chatGroupList">
+        <div class="chat-sidebar-title">Groups</div>
+        <div id="chatGroupItems"><div class="spin" style="margin:20px auto"></div></div>
+      </div>
+      <div class="chat-main">
+        <div class="chat-header" id="chatHeader">
+          <div class="chat-header-name">Select a group</div>
+          <div class="chat-header-sub" id="chatHeaderSub"></div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+ <div class="chat-empty"><svg class="icon i-arrow-left" aria-hidden="true"><use href="#i-arrow-left"/></svg> Pick a group to start chatting</div>
+        </div>
+        <div class="chat-attach-preview" id="chatAttachPreview" style="display:none"></div>
+        <div class="chat-input-row" id="chatInputRow" style="display:none">
+ <button class="chat-attach-btn" onclick="document.getElementById('chatFileInput').click()" title="Attach image, video, or file"><svg class="icon i-paperclip" aria-hidden="true"><use href="#i-paperclip"/></svg></button>
+          <input type="file" id="chatFileInput" accept="image/*,video/*,.pdf,.zip,.doc,.docx" style="display:none" onchange="handleChatFileSelect()"/>
+          <input type="text" id="chatInput" placeholder="Type a message..." maxlength="1000" onkeydown="if(event.key==='Enter')sendChatMessage()"/>
+ <button class="chat-send-btn" onclick="sendChatMessage()"><svg class="icon i-arrow-right" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="chat-layout" id="dmChatLayout" style="display:none">
+      <div class="chat-sidebar" id="dmConvoList">
+        <div class="chat-sidebar-title">Messages</div>
+        <div id="dmConvoItems"><div class="spin" style="margin:20px auto"></div></div>
+      </div>
+      <div class="chat-main">
+        <div class="chat-header" id="dmHeader">
+          <div class="chat-header-name">Select a conversation</div>
+        </div>
+        <div class="chat-messages" id="dmMessages">
+ <div class="chat-empty"><svg class="icon i-arrow-left" aria-hidden="true"><use href="#i-arrow-left"/></svg> Pick a conversation, or message someone from Group Chat's member list</div>
+        </div>
+        <div class="chat-input-row" id="dmInputRow" style="display:none">
+          <input type="text" id="dmInput" placeholder="Type a message..." maxlength="1000" onkeydown="if(event.key==='Enter')sendDmMessage()"/>
+ <button class="chat-send-btn" onclick="sendDmMessage()"><svg class="icon i-arrow-right" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="mediaViewerOverlay" class="media-viewer-overlay">
+ <button class="media-viewer-back" onclick="closeMediaViewer()"><svg class="icon i-arrow-left" aria-hidden="true"><use href="#i-arrow-left"/></svg> Back to Home</button>
+  <div class="media-viewer-content" id="mediaViewerContent"></div>
+</div>
+<div id="page-transactions" class="page">
+  <div class="page-hero">
+ <div class="ph-chip"><svg class="icon i-clipboard" aria-hidden="true"><use href="#i-clipboard"/></svg> Transactions</div>
+    <h1>Transaction History</h1>
+    <p>All deposits, purchases and credits</p>
+  </div>
+  <div class="section-wrap">
+    <div class="txn-segmented" id="txnSegmented">
+      <button class="txn-seg-opt active" data-filter="all" onclick="setTxnFilter('all')">All</button>
+      <button class="txn-seg-opt" data-filter="deposit" onclick="setTxnFilter('deposit')">Deposits</button>
+      <button class="txn-seg-opt" data-filter="purchase" onclick="setTxnFilter('purchase')">Purchases</button>
+      <button class="txn-seg-opt" data-filter="other" onclick="setTxnFilter('other')">Other</button>
+      <span class="txn-seg-thumb" id="txnSegThumb"></span>
+    </div>
+    <div id="txnsList"></div>
+  </div>
+</div>
+<div class="modal-overlay" id="txnModal">
+  <div class="modal-box" style="max-width:400px;padding:0;overflow:hidden">
+ <button class="modal-x" onclick="closeTxnModal()"><svg class="icon i-x" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div id="txnReceiptCanvasWrap" style="padding:24px 24px 0"></div>
+    <div style="padding:20px 24px 24px;display:flex;gap:10px">
+ <button class="btn-primary" style="flex:1" onclick="downloadTxnReceipt()"><svg class="icon i-arrow-down" aria-hidden="true"><use href="#i-arrow-down"/></svg> Download</button>
+ <button class="btn-primary" style="flex:1;background:transparent;border:1px solid var(--border);color:var(--t2)" onclick="shareTxnReceipt()"><svg class="icon i-upload" aria-hidden="true"><use href="#i-upload"/></svg> Share</button>
+    </div>
+  </div>
+</div>
+<div id="page-notifications" class="page">
+  <div class="section-wrap" style="max-width:640px">
+    <div style="display:flex;align-items:center;gap:12px;padding:20px 0 8px">
+ <button class="drawer-icon-btn" onclick="showPage('home')" aria-label="Back"><svg class="icon i-arrow-left" aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+ <h1 style="margin:0;font-size:22px"><svg class="icon i-bell" aria-hidden="true"><use href="#i-bell"/></svg> Notifications</h1>
+    </div>
+    <p style="color:var(--t2);font-size:13.5px;margin-bottom:16px">Deposits, purchases, credits, and support replies — most recent first.</p>
+    <div id="notifPageList"><div class="spin" style="margin:30px auto"></div></div>
+  </div>
+</div>
+<div class="modal-overlay" id="notifDetailModal">
+  <div class="modal-box" style="max-width:380px;padding:24px">
+ <button class="modal-x" onclick="document.getElementById('notifDetailModal').classList.remove('open')"><svg class="icon i-x" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <h3 id="notifDetailTitle" style="margin:0 0 8px"></h3>
+    <p id="notifDetailTime" style="color:var(--t2);font-size:12.5px;margin-bottom:14px"></p>
+    <p id="notifDetailMsg" style="line-height:1.6"></p>
+  </div>
+</div>
+<div id="page-support" class="page">
+  <div class="page-hero">
+ <div class="ph-chip"><svg class="icon i-message-circle" aria-hidden="true"><use href="#i-message-circle"/></svg> Support</div>
+    <h1>Get Help</h1>
+    <p>We're available 24/7 on WhatsApp</p>
+  </div>
+  <div class="support-wrap">
+    <div class="support-left">
+      <div class="supp-card">
+ <h3><svg class="icon i-bot" aria-hidden="true"><use href="#i-bot"/></svg> Ask Mizzy Sales Assistant</h3>
+        <p style="color:var(--t2);font-size:14px;margin-bottom:12px">Instant answers to basic questions — deposits, purchases, refunds, referrals, the API, and more.</p>
+ <button class="btn-primary" onclick="toggleAiChatFab()"><svg class="icon i-message-circle" aria-hidden="true"><use href="#i-message-circle"/></svg> Open Chat</button>
+      </div>
+      <div class="supp-card">
+        <h3>Quick Contact</h3>
+        <p style="color:var(--t2);font-size:14px;margin-bottom:16px">Fastest response via WhatsApp</p>
+        <a href="https://wa.me/2349065518402" data-link="contact" target="_blank" class="supp-btn supp-wa">
+          <span><svg class="wa-icon"><use href="#wa-logo"/></svg></span> Chat on WhatsApp
+        </a>
+        <a href="https://whatsapp.com/channel/0029Vb7ivq9HLHQcS4XgQu2Q" data-link="channel" target="_blank" class="supp-btn supp-ch">
+          <span><svg class="wa-icon"><use href="#wa-logo"/></svg></span> Join Our Channel
+        </a>
+        <a href="https://chat.whatsapp.com/HBqJeik773M1pqEmIjfpXr" data-link="group" target="_blank" class="supp-btn supp-grp">
+          <span><svg class="wa-icon"><use href="#wa-logo"/></svg></span> Join Community
+        </a>
+      </div>
+    </div>
+    <div class="support-right">
+      <div class="supp-card">
+        <h3>Submit a Ticket</h3>
+        <div class="fg"><label>Your Name</label><input type="text" id="suppName" placeholder="Enter your name"/></div>
+        <div class="fg"><label>Email</label><input type="email" id="suppEmail" placeholder="your@email.com"/></div>
+        <div class="fg"><label>Subject</label><input type="text" id="suppSubject" placeholder="What's the issue?"/></div>
+        <div class="fg"><label>Message</label><textarea id="suppMsg" rows="4" placeholder="Describe your issue..."></textarea></div>
+        <button class="btn-primary btn-full" onclick="submitSupport()">Send Ticket</button>
+        <div id="suppFeedback" class="form-feedback"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="page-settings" class="page">
+  <div class="page-hero">
+ <div class="ph-chip"><svg class="icon i-settings" aria-hidden="true"><use href="#i-settings"/></svg> Settings</div>
+    <h1>Account Settings</h1>
+  </div>
+  <div class="section-wrap">
+    <div class="settings-card">
+ <h3><svg class="icon i-image" aria-hidden="true"><use href="#i-image"/></svg> Profile Picture</h3>
+      <div class="profile-pic-row">
+        <img id="settingsAvatarPreview" class="profile-pic-preview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231c1c2a'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='%232f7bf6'%3E%F0%9F%91%A4%3C/text%3E%3C/svg%3E" alt="Profile" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231c1c2a'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='%232f7bf6'%3E%F0%9F%91%A4%3C/text%3E%3C/svg%3E'"/>
+        <div>
+          <input type="file" id="profilePicInput" accept="image/*" style="display:none" onchange="uploadProfilePic()"/>
+ <button class="btn-primary" onclick="document.getElementById('profilePicInput').click()"><svg class="icon i-upload" aria-hidden="true"><use href="#i-upload"/></svg> Upload New Picture</button>
+          <p class="mgid-hint" style="margin:8px 0 0">JPG, PNG, GIF, or WebP — max 5MB</p>
+        </div>
+      </div>
+      <div id="picFeedback" class="form-feedback"></div>
+    </div>
+    <div class="settings-card">
+ <h3><svg class="icon i-user" aria-hidden="true"><use href="#i-user"/></svg> Profile Info</h3>
+      <div class="fg"><label>Full Name</label><input type="text" id="settingsName" placeholder="Your full name"/></div>
+      <div class="fg"><label>Email Address</label><input type="email" id="settingsEmail" placeholder="your@email.com"/></div>
+ <button class="btn-primary" onclick="updateProfile()"><svg class="icon i-save" aria-hidden="true"><use href="#i-save"/></svg> Save Profile</button>
+      <div id="profileFeedback" class="form-feedback"></div>
+    </div>
+    <div class="settings-card" id="passwordCard">
+ <h3><svg class="icon i-lock" aria-hidden="true"><use href="#i-lock"/></svg> Change Password</h3>
+      <div class="fg"><label>Current Password</label><input type="password" id="oldPass" placeholder="Current password"/></div>
+      <div class="fg"><label>New Password</label><input type="password" id="newPass" placeholder="Min 6 characters"/></div>
+      <div class="fg"><label>Confirm New Password</label><input type="password" id="confirmPass" placeholder="Repeat new password"/></div>
+      <button class="btn-primary" onclick="changePassword()">Update Password</button>
+      <div id="settingsFeedback" class="form-feedback"></div>
+    </div>
+    <div class="settings-card" id="setPasswordCard" style="display:none">
+ <h3><svg class="icon i-lock" aria-hidden="true"><use href="#i-lock"/></svg> Add a Password</h3>
+      <p class="mgid-hint" style="margin:0 0 12px">Your account was created with Google. Add a password here so you can also log in with email + password.</p>
+      <div class="fg"><label>New Password</label><input type="password" id="setNewPass" placeholder="Min 6 characters"/></div>
+      <div class="fg"><label>Confirm Password</label><input type="password" id="setConfirmPass" placeholder="Repeat password"/></div>
+      <button class="btn-primary" onclick="setPassword()">Add Password</button>
+      <div id="setPasswordFeedback" class="form-feedback"></div>
+    </div>
+    <div class="settings-card">
+ <h3><svg class="icon i-key" aria-hidden="true"><use href="#i-key"/></svg> API Access <span class="mgid-hint" style="display:inline">— for connecting Mizzy Sales to your own scripts/apps</span></h3>
+      <div id="apiKeySection">Loading...</div>
+ <button class="btn-primary" style="margin-top:14px" onclick="showPage('apidocs')"><svg class="icon i-book-open" aria-hidden="true"><use href="#i-book-open"/></svg> View Full API Documentation</button>
+    </div>
+  </div>
+</div>
+<div id="page-welcome" class="page">
+  <section class="mp-hero"><div class="mp-wrap">
+    <div class="mp-hero-grid">
+      <div>
+        <span class="mp-eyebrow"><i></i> Trusted digital marketplace</span>
+        <h1 class="mp-h1">Numbers, accounts and growth tools, <em>all in one wallet.</em></h1>
+        <p class="mp-lead">Buy verification numbers, verified accounts and boosts with instant delivery, clear pricing and automatic refunds. One wallet, one dashboard, zero guesswork.</p>
+        <div class="mp-cta"><button class="mp-btn mp-btn--p" onclick="showPage('register')">Create free account <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></button><button class="mp-btn mp-btn--g" onclick="showPage('login')">Log in</button></div>
+        <div class="mp-trust"><span><b>✓</b> Instant delivery</span><span><b>✓</b> Auto refunds</span><span><b>✓</b> Secure payments</span></div>
+      </div>
+      <div class="mp-art">
+        <img class="mp-art-img" src="/img/mizzy-home-editorial.jpg" alt="Mizzy Sales marketplace" loading="eager"/>
+        <div class="mp-float mp-float--b"><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span><div>Code received<small>Delivered in seconds</small></div></div>
+        <div class="mp-float mp-float--a"><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M17 15h2"/></svg></span><div>Wallet funded<small>Ready to spend</small></div></div>
+      </div>
+    </div>
+    <div class="mp-stats welcome-stats" id="welcomeStats">
+      <div class="mp-stat"><b id="wsUsers">-</b><span>Members</span></div>
+      <div class="mp-stat"><b id="wsLogs">-</b><span>Items in stock</span></div>
+      <div class="mp-stat"><b id="wsTools">-</b><span>Tools</span></div>
+      <div class="mp-stat"><b id="wsCats">-</b><span>Platforms</span></div>
+      <div class="mp-stat"><b id="wsDelivered">-</b><span>Orders delivered</span></div>
+    </div>
+  </div></section>
+
+  <section class="mp-sec mp-sec--tight"><div class="mp-wrap"><div class="mp-head mp-head--c" style="margin-bottom:24px"><h2 class="mp-h2" style="font-size:clamp(20px,3vw,26px)">Works with the platforms you use</h2></div><div class="mp-chips"><span>WhatsApp</span><span>Telegram</span><span>Instagram</span><span>Facebook</span><span>TikTok</span><span>Google</span><span>X (Twitter)</span><span>Snapchat</span><span>Discord</span><span>YouTube</span><span>Amazon</span><span>PayPal</span><span>and many more</span></div></div></section>
+
+  <section class="mp-sec"><div class="mp-wrap">
+    <div class="mp-head mp-head--c"><span class="mp-eyebrow">What you get</span><h2 class="mp-h2">Everything you need, in one place</h2><p class="mp-sub">Six services that work together, paid for from a single wallet.</p></div>
+    <div class="mp-grid mp-grid--3"><a class="mp-card" href="#" onclick="showPage('register');return false" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div><h3>Virtual numbers</h3><p>Receive SMS codes for hundreds of apps and countries. See the price first, get refunded automatically if no code arrives.</p><span class="mp-go">Get a number →</span></a><a class="mp-card" href="#" onclick="showPage('register');return false" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a1 1 0 001 .8h9.2a1 1 0 001-.8L21 8H6"/></svg></div><h3>Verified accounts</h3><p>Social and email accounts, tested before listing and delivered to your dashboard the second payment clears.</p><span class="mp-go">Browse accounts →</span></a><a class="mp-card" href="#" onclick="showPage('register');return false" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Social boosting</h3><p>Followers, likes, views and subscribers across every major platform, ordered in a few taps.</p><span class="mp-go">Start a boost →</span></a><a class="mp-card" href="#" onclick="showPage('register');return false" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 015.7 5l-5 5-2.4-2.4-5 5a2 2 0 01-2.8-2.8l5-5-2.4-2.4"/></svg></div><h3>Digital tools</h3><p>Premium utilities, software keys and resources you buy once and keep using.</p><span class="mp-go">See tools →</span></a><a class="mp-card" href="#" onclick="showPage('register');return false" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5.5-5.5L4 21"/></svg></div><h3>Working pics</h3><p>Verified media and ready-to-use pictures for profiles, listings and campaigns.</p><span class="mp-go">View pics →</span></a><a class="mp-card" href="#" onclick="showPage('register');return false" style="text-decoration:none;color:inherit;display:block"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 9h18M12 9v12M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"/></svg></div><h3>Rewards & referrals</h3><p>Earn commission on every friend you bring, unlock badges, join giveaways and play for prizes.</p><span class="mp-go">Start earning →</span></a></div>
+  </div></section>
+
+  <section class="mp-sec mp-band"><div class="mp-wrap">
+    <div class="mp-head mp-head--c"><span class="mp-eyebrow">How it works</span><h2 class="mp-h2">From sign-up to first order in four steps</h2></div>
+    <div class="mp-steps"><div class="mp-step"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></div><h3>Create your account</h3><p>Sign up in under a minute and open your personal dashboard.</p></div><div class="mp-step"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M17 15h2"/></svg></div><h3>Fund your wallet</h3><p>Deposit securely with the payment methods available to you.</p></div><div class="mp-step"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a1 1 0 001 .8h9.2a1 1 0 001-.8L21 8H6"/></svg></div><h3>Pick what you need</h3><p>Numbers, accounts, boosts or tools — prices shown before you pay.</p></div><div class="mp-step"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Get it instantly</h3><p>Delivery is automatic and every order is saved in My Purchases.</p></div></div>
+  </div></section>
+
+  <section class="mp-sec"><div class="mp-wrap"><div class="mp-split">
+    <div>
+      <span class="mp-eyebrow">Your wallet</span>
+      <h2 class="mp-h2">A simple, secure wallet that does the heavy lifting</h2>
+      <p class="mp-sub">Add money once and spend it across every service on the platform.</p>
+      <ul class="mp-list"><li>Deposit by bank transfer, card or OPay — balance updates the moment payment is confirmed</li><li>Prices are shown in full before you confirm. Money only moves when you press buy</li><li>Every purchase, deposit and refund is logged with a receipt ID</li></ul>
+      <button class="mp-btn mp-btn--p" onclick="showPage('register')">Open my wallet <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></button>
+    </div>
+    <div><div class="mp-wallet" aria-hidden="true"><div class="mp-w-top"><div class="mp-w-brand"><span class="mp-w-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 5.5 6l4.5 5 3-8 3 8 4.5-5L23 17H3Z"/></svg></span>Mizzy Sales</div><svg class="mp-w-nfc" viewBox="0 0 24 24"><path d="M7 8a6 6 0 010 8M11 5.5a10 10 0 010 13M15 3a14 14 0 010 18"/></svg></div><div class="mp-w-mid"><div class="mp-w-chip"></div><div class="mp-w-label">Wallet balance</div><div class="mp-w-amt">₦25,000.00</div></div><div class="mp-w-bot"><div class="mp-w-holder"><small>Member</small><b>Your name</b></div><span class="mp-w-add"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add money</span></div></div></div>
+  </div></div></section>
+
+  <section class="mp-sec mp-band"><div class="mp-wrap">
+    <div class="mp-head mp-head--c"><span class="mp-eyebrow">Built on trust</span><h2 class="mp-h2">The details that make buying feel safe</h2></div>
+    <div class="mp-grid mp-grid--4"><div class="mp-card"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Reviewed listings</h3><p>Items are checked before they are posted, so you browse with confidence.</p></div><div class="mp-card"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 10-3 6.7M21 4v5h-5"/></svg></div><h3>Automatic refunds</h3><p>No code in time? Your money returns to your wallet on its own.</p></div><div class="mp-card"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h3>Secure accounts</h3><p>Your wallet and purchases sit behind your private login.</p></div><div class="mp-card"><div class="mp-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></div><h3>Receipt & order IDs</h3><p>Every order carries an ID you can quote to support to trace it fast.</p></div></div>
+  </div></section>
+
+  <section class="mp-sec"><div class="mp-wrap">
+    <div class="mp-head"><span class="mp-eyebrow">About Mizzy Sales</span><h2 class="mp-h2">A marketplace built around clarity</h2>
+      <p class="mp-sub">Mizzy Sales exists to make buying digital products simple. We list what we sell, show the price before you pay, deliver straight to your account, and give you a receipt for everything. If something goes wrong, there is a person on the other end of the chat to sort it out.</p></div>
+    <div class="mp-grid mp-grid--3">
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">Verification numbers</h3><p style="margin-top:12px">Need a code for WhatsApp, Telegram, TikTok, Google or hundreds of other apps? Pick the service, pick the country, choose a pool and confirm. The number appears on screen and the code lands the moment it arrives.</p><p style="margin-top:12px">You see the total before you confirm. If no code comes in time, the amount returns to your wallet by itself, with nothing to claim and nobody to chase.</p></article>
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">Verified accounts</h3><p style="margin-top:12px">Accounts are reviewed before they are listed, then delivered to My Purchases the second your payment clears. Login details are shown once, saved to your history, and can be copied in a tap.</p><p style="margin-top:12px">For accounts bought from our partner markets, the supplier order ID is shown beside your details too, so support can trace an order quickly if you ever need help.</p></article>
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">Boosting and tools</h3><p style="margin-top:12px">Social boosting covers followers, likes, views and more across the major platforms. Digital tools and resources sit in their own section, so you can find what you need without scrolling past everything else.</p><p style="margin-top:12px">Every order, whatever the type, is listed in your dashboard with its status and receipt ID.</p></article>
+    </div>
+  </div></section>
+
+  <section class="mp-sec mp-band"><div class="mp-wrap">
+    <div class="mp-head mp-head--c"><span class="mp-eyebrow">Why people stay</span><h2 class="mp-h2">What buying here is like</h2></div>
+    <div class="mp-grid mp-grid--3">
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">Prices are shown up front</h3><p style="margin-top:12px">There are no surprise fees at checkout. The price on the listing is the price you pay, and your wallet balance is always visible before you press buy.</p></article>
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">Refunds are automatic</h3><p style="margin-top:12px">When a number does not deliver a code in time, the system refunds you automatically. When you cancel an unused number, the refund is immediate.</p></article>
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">Everything is recorded</h3><p style="margin-top:12px">Deposits, purchases, codes and refunds all live in your history. You can look back at any order, copy its details again, or quote its ID to support.</p></article>
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">One wallet for everything</h3><p style="margin-top:12px">Fund once and spend on numbers, accounts, boosts and tools. There is no separate balance for each service to keep track of.</p></article>
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">Help when you need it</h3><p style="margin-top:12px">Our team answers on WhatsApp and Telegram, and the on-site assistant can point you to the right page. Tell us your order ID and we can usually find it in seconds.</p></article>
+      <article class="mp-card" style="padding:30px"><h3 style="font-size:20px">Earn as you go</h3><p style="margin-top:12px">Invite friends with your referral link and earn commission when they buy. Collect badges, take part in giveaways, and keep an eye on your progress from the dashboard.</p></article>
+    </div>
+  </div></section>
+
+  <section class="mp-sec"><div class="mp-wrap"><div class="mp-split">
+    <div><span class="mp-eyebrow">Getting your first number</span><h2 class="mp-h2">From wallet to code in about a minute</h2>
+      <p class="mp-sub">New to verification numbers? Here is exactly what happens when you rent one, so there are no surprises.</p></div>
+    <ol class="mp-list" style="counter-reset:n;margin:0">
+      <li><span><b>Choose the service.</b> Search for the app you need a code for, for example WhatsApp or TikTok.</span></li>
+      <li><span><b>Choose the country.</b> Prices and availability update live for each country.</span></li>
+      <li><span><b>Choose a pool.</b> Lower pools cost less, while higher pools are recommended for faster delivery.</span></li>
+      <li><span><b>Confirm.</b> A summary shows the service, country, pool and price before anything is charged.</span></li>
+      <li><span><b>Receive your code.</b> Use the number in the app, then copy the code when it appears. Nothing arrives? You are refunded automatically.</span></li>
+    </ol>
+  </div></div></section>
+
+  <section class="mp-sec"><div class="mp-wrap">
+    <div class="mp-head mp-head--c"><span class="mp-eyebrow">FAQ</span><h2 class="mp-h2">Frequently asked questions</h2></div>
+    <div class="mp-faq faq-list" id="welcomeFaqList"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is Mizzy Sales legit? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Yes. Listings are reviewed before they are posted, payments run through licensed processors, and every purchase has a receipt you can reference.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How fast is delivery? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Most orders are delivered instantly. For numbers, your code appears on screen as soon as it arrives.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I do not receive a code? <span class="faq-caret">&#9662;</span></button><div class="faq-a">If the code does not arrive in time, the order is cancelled and refunded to your wallet automatically. You can also cancel a short while after purchase.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I fund my wallet? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Open Deposit in your dashboard and choose from the payment methods available to you. Your balance updates once the payment is confirmed.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I get a refund on other items? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Contact support with your receipt ID and our team will review the order and help resolve it.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you have tutorials? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Yes. The Tutorials section has step-by-step image and video guides for the main features.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What are working pics? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Curated items with a set price and stock. After purchase you receive a link, image or text instantly.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is my information safe? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Your account is protected by your private login and your purchases are visible only to you.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Which countries can I choose for numbers? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Many. Search for your country in the number purchase page and you will see the services and prices available.</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I contact support? <span class="faq-caret">&#9662;</span></button><div class="faq-a">Message us on Telegram any time. The link is in the footer of every page and on your dashboard.</div></div></div>
+  </div></section>
+
+  <section class="mp-sec" style="padding-top:20px"><div class="mp-wrap">
+    <div class="mp-cta-band">
+      <h2>Ready to get started?</h2>
+      <p>Create your free account and make your first purchase in minutes. Questions? Our team is a message away.</p>
+      <div class="mp-cta"><button class="mp-btn mp-btn--w" onclick="showPage('register')">Create free account</button><a class="mp-btn mp-btn--o" data-link="contact" href="https://wa.me/2349065518402" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a><a class="mp-btn mp-btn--o" data-link="telegram" href="https://t.me/klslogs" target="_blank" rel="noopener noreferrer">Telegram</a></div>
+    </div>
+  </div></section>
+</div>
+<div id="page-login" class="page">
+  <div class="auth-bg ms-auth"><div class="ms-auth-shell"><aside class="ms-auth-side"><div><div class="ms-as-brand"><span class="mp-w-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 5.5 6l4.5 5 3-8 3 8 4.5-5L23 17H3Z"/></svg></span>Mizzy Sales</div><h2>Welcome back to your marketplace.</h2><p>Pick up right where you left off — your wallet, orders and numbers are waiting.</p>
+<ul class="ms-as-list"><li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>Instant automatic delivery</li><li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>Auto-refunds on failed numbers</li><li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>Receipt &amp; order IDs on every purchase</li></ul></div>
+<div class="ms-as-foot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Your data is encrypted and never shared</div></aside><div class="auth-card ms-auth-card">
+ <button type="button" class="auth-home-btn" onclick="showPage('welcome')"><svg class="icon i-arrow-left" aria-hidden="true"><use href="#i-arrow-left"/></svg> Back to Home</button>
+ <div class="ms-auth-head"><span class="ms-mobile-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 5.5 6l4.5 5 3-8 3 8 4.5-5L23 17H3Z"/></svg> Mizzy Sales</span><h2>Welcome back</h2><p class="auth-sub">Log in to your account</p></div>
+      <a href="/auth/google" class="google-btn-link" id="googleLoginBtn">
+        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92A8.78 8.78 0 0 0 17.64 9.2z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.68 9c0-.6.1-1.18.29-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.05l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.59-2.59A8.6 8.6 0 0 0 9 0 9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+        Continue with Google
+      </a>
+      <div class="auth-divider"><span>or</span></div>
+      <div class="fg"><label>Email Address</label><input type="email" id="loginEmail" placeholder="your@email.com" onkeydown="if(event.key==='Enter')login()"/></div>
+      <div class="fg"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()"/></div>
+      <button class="btn-primary btn-full" id="loginBtn" onclick="login()">Login to Account</button>
+      <div id="loginFeedback" class="form-feedback"></div>
+      <p class="auth-switch" style="margin-top:10px"><a href="#" onclick="event.preventDefault();openForgotPassword()">Forgot your password?</a></p>
+      <p class="auth-switch">Don't have an account? <a href="#" onclick="showPage('register')">Register here</a></p>
+
+      <!-- ── FORGOT / RESET PASSWORD (login page only) ───────────────── -->
+      <div id="forgotBox" style="display:none;margin-top:18px;padding:16px;border:1px solid var(--border);border-radius:12px;background:var(--bg3,#f8fafc);text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+          <h3 style="margin:0;font-size:1rem">Reset your password</h3>
+          <button type="button" class="btn-secondary" style="padding:4px 10px" onclick="closeForgotPassword()">Close</button>
+        </div>
+
+        <div id="forgotStep1" style="margin-top:12px">
+          <p class="mgid-hint" style="margin:0 0 10px">Enter the email address on your account and we'll send you a 6-digit code.</p>
+          <div class="fg"><label>Email Address</label><input type="email" id="forgotEmail" placeholder="your@email.com" onkeydown="if(event.key==='Enter')sendResetCode()"/></div>
+          <button class="btn-primary btn-full" id="forgotBtn" onclick="sendResetCode()">Send reset code</button>
+        </div>
+
+        <div id="forgotStep2" style="display:none;margin-top:12px">
+          <p class="mgid-hint" style="margin:0 0 10px">We emailed a 6-digit code to <b id="forgotTargetEmail"></b>. It expires in 15 minutes.</p>
+          <div class="fg"><label>6-digit code</label><input type="text" id="resetCode" inputmode="numeric" maxlength="6" placeholder="123456"/></div>
+          <div class="fg"><label>New Password</label><input type="password" id="resetPass" placeholder="Min 6 characters"/></div>
+          <div class="fg"><label>Confirm New Password</label><input type="password" id="resetPass2" placeholder="Repeat new password" onkeydown="if(event.key==='Enter')submitNewPassword()"/></div>
+          <button class="btn-primary btn-full" id="resetBtn" onclick="submitNewPassword()">Set new password</button>
+          <p class="auth-switch" style="margin-top:8px"><a href="#" onclick="event.preventDefault();sendResetCode(true)">Didn't get it? Send a new code</a></p>
+        </div>
+
+        <div id="forgotFeedback" class="form-feedback"></div>
+        <p style="margin:10px 0 0;font-size:.78rem;line-height:1.6;color:var(--t2)">
+          <b>Can't find the email?</b> Check your <b>Spam / Junk / Promotions</b> folder — and please mark it as
+          <b>"Not spam"</b> so future Mizzy Sales emails land in your inbox. It arrives within a minute or two.
+        </p>
+      </div>
+
+    </div>
+  </div></div>
+</div>
+<div id="page-register" class="page">
+  <div class="auth-bg ms-auth"><div class="ms-auth-shell"><aside class="ms-auth-side"><div><div class="ms-as-brand"><span class="mp-w-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 5.5 6l4.5 5 3-8 3 8 4.5-5L23 17H3Z"/></svg></span>Mizzy Sales</div><h2>Create your free account in a minute.</h2><p>One wallet for numbers, verified accounts, boosts and tools — with instant delivery.</p>
+<ul class="ms-as-list"><li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>Instant automatic delivery</li><li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>Auto-refunds on failed numbers</li><li><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>Receipt &amp; order IDs on every purchase</li></ul></div>
+<div class="ms-as-foot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Your data is encrypted and never shared</div></aside><div class="auth-card ms-auth-card">
+ <button type="button" class="auth-home-btn" onclick="showPage('welcome')"><svg class="icon i-arrow-left" aria-hidden="true"><use href="#i-arrow-left"/></svg> Back to Home</button>
+ <div class="ms-auth-head"><span class="ms-mobile-brand"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 5.5 6l4.5 5 3-8 3 8 4.5-5L23 17H3Z"/></svg> Mizzy Sales</span><h2>Create your account</h2><p class="auth-sub">Join Mizzy Sales and start buying today</p></div>
+      <a href="#" class="google-btn-link" id="googleRegisterBtn" onclick="event.preventDefault();startGoogleRegister()">
+        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92A8.78 8.78 0 0 0 17.64 9.2z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.68 9c0-.6.1-1.18.29-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.05l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.59-2.59A8.6 8.6 0 0 0 9 0 9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+        Continue with Google
+      </a>
+      <div class="auth-divider"><span>or</span></div>
+      <div class="fg"><label>Full Name</label><input type="text" id="regName" placeholder="Your full name"/></div>
+      <div class="fg"><label>Email Address</label><input type="email" id="regEmail" placeholder="your@email.com"/></div>
+      <div class="ms-reg-grid"><div class="fg"><label>Password</label><input type="password" id="regPass" placeholder="Minimum 6 characters"/><div class="ms-meter"><i id="regMeter"></i></div><div class="ms-meter-t" id="regMeterT"></div></div>
+      <div class="fg"><label>Confirm Password</label><input type="password" id="regConfirm" placeholder="Repeat your password"/></div></div>
+      <div class="fg"><label data-i18n="Country">Country</label><div data-country-select id="regCountry"></div></div>
+      <div class="fg"><label data-i18n="Phone Number">Phone Number <span style="color:var(--t3);font-weight:400">(optional)</span></label><div data-country-phone id="regPhoneWrap"></div></div>
+      <div class="fg"><label>Referral Code <span style="color:var(--t3);font-weight:400">(optional)</span></label><input type="text" id="regRefCode" placeholder="Enter a friend's referral code"/></div>
+      <label class="terms-check"><input type="checkbox" id="regTerms"/><span>I agree to the <a href="#" onclick="event.preventDefault();showPage('terms')">Terms &amp; Conditions</a></span></label>
+      <button class="btn-primary btn-full" id="regBtn" onclick="register()">Create My Account</button>
+      <div id="regFeedback" class="form-feedback"></div>
+      <p class="auth-switch">Already have an account? <a href="#" onclick="showPage('login')">Login here</a></p>
+    </div>
+  </div></div>
+</div>
+<div id="page-terms" class="page">
+  <div class="section-wrap terms-wrap">
+ <h2 class="terms-title"><svg class="icon i-scroll" aria-hidden="true"><use href="#i-scroll"/></svg> Terms &amp; Conditions</h2>
+    <p class="terms-updated">Last updated: <span id="termsDate"></span></p>
+    <div class="terms-body">
+      <h3>1. About Mizzy Sales</h3>
+      <p>Mizzy Sales — Mizzy Sales ("Mizzy Sales", "we", "us") is a digital marketplace for social media accounts ("logs") and digital tools. By creating an account or using this site, you agree to these Terms &amp; Conditions in full.</p>
+      <h3>2. Account Registration</h3>
+      <p>You must create an account with an accurate name and email address to browse or purchase on Mizzy Sales. You are responsible for keeping your login details secure and for all activity under your account.</p>
+      <h3>3. Wallet & Payments</h3>
+      <p>Purchases are made from your Mizzy Sales wallet balance. You fund your wallet by depositing to the account details provided and submitting proof of payment. Deposits are reviewed automatically and/or manually before your balance is credited. Providing a fake, altered, or duplicate payment receipt is fraud and will result in account restriction and forfeiture of any pending balance.</p>
+      <h3>4. Purchases & Delivery</h3>
+      <p>Once a purchase is completed, log details or tool access (link or file) are revealed to you immediately and are considered delivered. Because delivery is instant and details are private the moment they're revealed, all sales are final except where an item is confirmed non-functional or materially different from its listing — contact support with your Purchase ID within 24 hours in that case.</p>
+      <h3>5. Prohibited Use</h3>
+      <p>You may not use Mizzy Sales for money laundering, fraud, purchasing accounts/tools for the purpose of harassment or illegal activity, chargebacks/payment reversal abuse, or attempts to exploit bugs in the platform for financial gain. Violating this may lead to immediate account restriction and forfeiture of wallet balance.</p>
+      <h3>6. Account Restriction</h3>
+      <p>Mizzy Sales reserves the right to restrict or suspend any account suspected of fraud, abuse, chargeback attempts, or violation of these terms, with or without prior notice. Restricted accounts cannot log in, browse, or make purchases until the matter is resolved with support.</p>
+      <h3>7. No Warranty on Third-Party Platforms</h3>
+      <p>Logs and tools sold on Mizzy Sales relate to third-party platforms (social media networks, software, etc.) that Mizzy Sales does not own or control. Mizzy Sales is not responsible for actions taken by those third parties against an account or tool after delivery (e.g. suspension by the originating platform), except where Mizzy Sales's own listing was inaccurate.</p>
+      <h3>8. Support & Disputes</h3>
+      <p>For any issue with an order, contact support via WhatsApp with your Purchase ID and account email. We aim to resolve disputes fairly and promptly.</p>
+      <h3>9. Changes to These Terms</h3>
+      <p>We may update these Terms &amp; Conditions from time to time. Continued use of Mizzy Sales after changes are posted means you accept the revised terms.</p>
+      <h3>10. Contact</h3>
+      <p>Reach us any time via WhatsApp at <a href="https://wa.me/2349065518402" data-link="contact" target="_blank" id="termsWaTextLink">wa.me/2349065518402</a> or through the Support page on this site.</p>
+    </div>
+ <button class="btn-primary" onclick="history.length>1?history.back():showPage(token?'home':'login')" style="margin-top:20px"><svg class="icon i-arrow-left" aria-hidden="true"><use href="#i-arrow-left"/></svg> Back</button>
+  </div>
+</div>
+<div id="page-apidocs" class="page">
+  <div class="page-hero">
+ <div class="ph-chip"><svg class="icon i-key" aria-hidden="true"><use href="#i-key"/></svg> Developers</div>
+    <h1>Mizzy Sales API Documentation</h1>
+    <p>Connect your own scripts and apps to your Mizzy Sales account</p>
+  </div>
+  <div class="section-wrap terms-wrap api-docs-wrap">
+    <div class="api-doc-section">
+      <h3>Getting Started</h3>
+      <p>Every Mizzy Sales user can generate a personal <strong>API Key</strong> and <strong>API Secret</strong> from
+ <a href="/settings">Settings <svg class="icon i-arrow-right" aria-hidden="true"><use href="#i-arrow-right"/></svg> API Access</a>. These two values authenticate every request
+        you make to the API — treat them like a password. Your secret is shown <strong>once</strong> at generation time and never again,
+        so save it somewhere safe immediately.</p>
+      <p>All endpoints are scoped to your own account only — you can check your own balance, list available items, view your
+        own purchase history, and buy items on your own behalf. You cannot access any other user's data.</p>
+    </div>
+    <div class="api-doc-section">
+      <h3>Authentication</h3>
+      <p>Every request must include these two headers:</p>
+      <div class="api-docs-block">X-API-Key: your_api_key
+X-API-Secret: your_api_secret</div>
+      <p>Requests missing either header, or with an invalid/revoked key, get a <code>401 Unauthorized</code> response.</p>
+    </div>
+    <div class="api-doc-section">
+      <h3>Base URL</h3>
+      <div class="api-docs-block" id="apiBaseUrlBlock">https://your-site.example.com/api/v1</div>
+    </div>
+    <div class="api-doc-section">
+      <h3>Endpoints</h3>
+      <table class="api-endpoint-table">
+        <thead><tr><th>Method</th><th>Endpoint</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><span class="api-method get">GET</span></td><td><code>/me</code></td><td>Your account info (name, email, balance, Game ID)</td></tr>
+          <tr><td><span class="api-method get">GET</span></td><td><code>/balance</code></td><td>Your current wallet balance</td></tr>
+          <tr><td><span class="api-method get">GET</span></td><td><code>/purchases</code></td><td>Your full purchase history</td></tr>
+          <tr><td><span class="api-method get">GET</span></td><td><code>/listings</code></td><td>All available logs/tools (add <code>?type=tool</code> or <code>?type=log</code> to filter)</td></tr>
+          <tr><td><span class="api-method get">GET</span></td><td><code>/listings/:id</code></td><td>Details of one specific listing</td></tr>
+          <tr><td><span class="api-method post">POST</span></td><td><code>/buy/:id</code></td><td>Purchase a listing using your wallet balance</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="api-doc-section">
+      <h3>Example: Check your balance</h3>
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchLangTab(this,'bal-curl')">cURL</button>
+        <button class="lang-tab" onclick="switchLangTab(this,'bal-js')">JavaScript</button>
+        <button class="lang-tab" onclick="switchLangTab(this,'bal-py')">Python</button>
+      </div>
+      <div class="lang-panel" id="bal-curl">
+        <div class="api-docs-block">curl https://your-site.example.com/api/v1/balance \
+  -H "X-API-Key: your_api_key" \
+  -H "X-API-Secret: your_api_secret"</div>
+      </div>
+      <div class="lang-panel" id="bal-js" style="display:none">
+        <div class="api-docs-block">const res = await fetch('https://your-site.example.com/api/v1/balance', {
+  headers: {
+    'X-API-Key': 'your_api_key',
+    'X-API-Secret': 'your_api_secret'
+  }
+});
+const data = await res.json();
+console.log(data.balance);</div>
+      </div>
+      <div class="lang-panel" id="bal-py" style="display:none">
+        <div class="api-docs-block">import requests
+res = requests.get(
+    "https://your-site.example.com/api/v1/balance",
+    headers={
+        "X-API-Key": "your_api_key",
+        "X-API-Secret": "your_api_secret"
+    }
+)
+print(res.json()["balance"])</div>
+      </div>
+    </div>
+    <div class="api-doc-section">
+      <h3>Example: List available items</h3>
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchLangTab(this,'list-curl')">cURL</button>
+        <button class="lang-tab" onclick="switchLangTab(this,'list-js')">JavaScript</button>
+        <button class="lang-tab" onclick="switchLangTab(this,'list-py')">Python</button>
+      </div>
+      <div class="lang-panel" id="list-curl">
+        <div class="api-docs-block">curl "https://your-site.example.com/api/v1/listings?type=tool" \
+  -H "X-API-Key: your_api_key" \
+  -H "X-API-Secret: your_api_secret"</div>
+      </div>
+      <div class="lang-panel" id="list-js" style="display:none">
+        <div class="api-docs-block">const res = await fetch('https://your-site.example.com/api/v1/listings?type=tool', {
+  headers: {
+    'X-API-Key': 'your_api_key',
+    'X-API-Secret': 'your_api_secret'
+  }
+});
+const tools = await res.json();
+tools.forEach(t => console.log(t.title, t.price));</div>
+      </div>
+      <div class="lang-panel" id="list-py" style="display:none">
+        <div class="api-docs-block">import requests
+res = requests.get(
+    "https://your-site.example.com/api/v1/listings",
+    params={"type": "tool"},
+    headers={
+        "X-API-Key": "your_api_key",
+        "X-API-Secret": "your_api_secret"
+    }
+)
+for tool in res.json():
+    print(tool["title"], tool["price"])</div>
+      </div>
+    </div>
+    <div class="api-doc-section">
+      <h3>Example: Buy an item</h3>
+ <div class="info-box" style="margin-bottom:12px"><svg class="icon i-credit-card" aria-hidden="true"><use href="#i-credit-card"/></svg> No platform fee — you're charged exactly the item's listed price via the API, same as buying it through the marketplace. The response includes <code>itemPrice</code> and <code>totalCharged</code> (always equal) so you can confirm this.</div>
+      <div class="lang-tabs">
+        <button class="lang-tab active" onclick="switchLangTab(this,'buy-curl')">cURL</button>
+        <button class="lang-tab" onclick="switchLangTab(this,'buy-js')">JavaScript</button>
+        <button class="lang-tab" onclick="switchLangTab(this,'buy-py')">Python</button>
+      </div>
+      <div class="lang-panel" id="buy-curl">
+        <div class="api-docs-block">curl -X POST https://your-site.example.com/api/v1/buy/LISTING_ID_HERE \
+  -H "X-API-Key: your_api_key" \
+  -H "X-API-Secret: your_api_secret"</div>
+      </div>
+      <div class="lang-panel" id="buy-js" style="display:none">
+        <div class="api-docs-block">const res = await fetch('https://your-site.example.com/api/v1/buy/LISTING_ID_HERE', {
+  method: 'POST',
+  headers: {
+    'X-API-Key': 'your_api_key',
+    'X-API-Secret': 'your_api_secret'
+  }
+});
+const result = await res.json();
+console.log(result.message, result.newBalance);</div>
+      </div>
+      <div class="lang-panel" id="buy-py" style="display:none">
+        <div class="api-docs-block">import requests
+res = requests.post(
+    "https://your-site.example.com/api/v1/buy/LISTING_ID_HERE",
+    headers={
+        "X-API-Key": "your_api_key",
+        "X-API-Secret": "your_api_secret"
+    }
+)
+result = res.json()
+print(result["message"], result["newBalance"])</div>
+      </div>
+    </div>
+    <div class="api-doc-section">
+      <h3>Errors</h3>
+      <table class="api-endpoint-table">
+        <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>401</code></td><td>Missing or invalid API key/secret</td></tr>
+          <tr><td><code>403</code></td><td>Account restricted</td></tr>
+          <tr><td><code>404</code></td><td>Listing not found or no longer available</td></tr>
+          <tr><td><code>400</code></td><td>Insufficient balance, sold out, or invalid request</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+ <button class="btn-primary" onclick="downloadApiDocs()"><svg class="icon i-arrow-down" aria-hidden="true"><use href="#i-arrow-down"/></svg> Download These Docs</button>
+ <button class="btn-primary" onclick="showPage('settings')" style="background:transparent;border:1px solid var(--border);color:var(--t2)"><svg class="icon i-arrow-left" aria-hidden="true"><use href="#i-arrow-left"/></svg> Back to Settings</button>
+    </div>
+  </div>
+</div>
+</main>
+<div id="itemModal" class="modal-overlay" onclick="closeModal(event)">
+  <div class="modal-box">
+ <button class="modal-x" onclick="closeModal()"><svg class="icon i-x" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+<div id="tutorialViewerOv" class="modal-overlay" onclick="if(event.target===this)closeTutorialViewer()">
+  <div class="modal-box" style="max-width:520px">
+ <button class="modal-x" onclick="closeTutorialViewer()"><svg class="icon i-x" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div style="padding:20px">
+ <h3 style="margin-bottom:14px"><svg class="icon i-book-open" aria-hidden="true"><use href="#i-book-open"/></svg> Login Tutorial</h3>
+      <div id="tutorialViewerBody"></div>
+    </div>
+  </div>
+</div>
+<div id="reviewViewerOv" class="modal-overlay" onclick="if(event.target===this)closeReviewViewer()">
+  <div class="modal-box" style="max-width:520px">
+ <button class="modal-x" onclick="closeReviewViewer()"><svg class="icon i-x" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div style="padding:20px">
+ <h3 style="margin-bottom:14px"><svg class="icon i-star" aria-hidden="true"><use href="#i-star"/></svg> Review</h3>
+      <div id="reviewViewerBody"></div>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+ <span class="footer-crown"><svg class="icon i-crown" aria-hidden="true"><use href="#i-crown"/></svg></span>
+      <div>
+        <div class="footer-name">Mizzy Sales — Mizzy Sales</div>
+ <div class="footer-tag">Verified Social Media Account Seller <svg class="icon i-alert-triangle" aria-hidden="true"><use href="#i-alert-triangle"/></svg>‼</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="https://whatsapp.com/channel/0029Vb7ivq9HLHQcS4XgQu2Q" data-link="channel" target="_blank"><svg class="wa-icon"><use href="#wa-logo"/></svg> Channel</a>
+      <a href="https://chat.whatsapp.com/HBqJeik773M1pqEmIjfpXr" data-link="group" target="_blank"><svg class="wa-icon"><use href="#wa-logo"/></svg> Group</a>
+      <a href="https://wa.me/2349065518402" data-link="contact" target="_blank"><svg class="wa-icon"><use href="#wa-logo"/></svg> Contact</a>
+ <a href="#" onclick="event.preventDefault();showPage('terms')"><svg class="icon i-scroll" aria-hidden="true"><use href="#i-scroll"/></svg> Terms &amp; Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+ <div class="footer-visits"><svg class="icon i-user" aria-hidden="true"><use href="#i-user"/></svg> <span id="footerVisitCount">—</span> visitors</div>
+    <div class="footer-copy">© <span id="footerYear"></span> Mizzy Sales — Mizzy Sales. All rights reserved.</div>
+  </div>
+</footer>
+<nav class="bottom-tabbar" id="bottomTabbar">
+  <button class="bt-item" id="btHome" onclick="window.location.href='/dashboard'">
+ <span class="bt-icon"><svg class="icon i-home" aria-hidden="true"><use href="#i-home"/></svg></span><span class="bt-label">Home</span>
+  </button>
+  <button class="bt-item" id="btMarket" onclick="window.location.href='/marketplace'">
+ <span class="bt-icon"><svg class="icon i-cart" aria-hidden="true"><use href="#i-cart"/></svg></span><span class="bt-label">Marketplace</span>
+  </button>
+  <button class="bt-item" id="btWallet" onclick="window.location.href='/deposit'">
+ <span class="bt-icon"><svg class="icon i-wallet" aria-hidden="true"><use href="#i-wallet"/></svg></span><span class="bt-label">Wallet</span>
+  </button>
+  <button class="bt-item" id="btChat" onclick="window.location.href='/groups'">
+ <span class="bt-icon"><svg class="icon i-message-circle" aria-hidden="true"><use href="#i-message-circle"/></svg></span><span class="bt-label">Chat</span>
+  </button>
+  <button class="bt-item" id="btProfile" onclick="window.location.href='/settings'">
+ <span class="bt-icon"><svg class="icon i-user" aria-hidden="true"><use href="#i-user"/></svg></span><span class="bt-label">Profile</span>
+  </button>
+</nav>
+<script>
+  // ── Anti-scrape deterrents (client-side) ──────────────────────
+  // These raise the effort needed to casually scrape the page — they cannot make
+  // the site truly unscrapable, since any browser can still render and export it.
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    const k = e.key?.toLowerCase();
+    const blockCombo =
+      (e.ctrlKey && ['u','s','c'].includes(k) && e.target === document.body) || // view-source, save-page, whole-page copy
+      k === 'f12' ||
+      (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(k)); // devtools panels
+    if (blockCombo) e.preventDefault();
+  });
+</script>
+<script src="js/money.js?v=20260910a"></script>
+<script src="script.js?v=20260910a"></script>
+ <script src="/js/announcements.js"></script>
+<script src="/js/site-banner.js"></script>
+<script src="/js/mizzy-pro.js?v=1" defer></script>
+<script src="game.js?v=20260910a"></script>
+<script src="js/i18n.js?v=20260910a" defer></script>
+<script src="js/country-select.js?v=20260910a" defer></script>
+<script src="js/global-pay.js?v=20260910a" defer></script>
+<script src="js/wallet.js?v=20260910a" defer></script>
+<script src="js/dev-credit.js?v=20260910a" defer></script>
+<script src="/js/mobile-features.js" defer></script>
+<script src="/js/vpn-notice.js" defer></script>
+<script src="/js/float-tools.js" defer></script>
+<script src="/js/support-dock.js?v=1" defer></script>
+<script src="/js/mz-banner.js?v=2"></script>
+</body>
+</html>

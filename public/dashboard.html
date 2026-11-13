@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/js/auth-keeper.js?v=1"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Dashboard — Mizzy Sales</title>
+  <meta name="description" content="Manage your Mizzy Sales wallet, verified accounts, digital tools, and orders."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/style.css?v=20260918"/>
+  <link rel="stylesheet" href="/theme.css?v=20260918"/>
+  <link rel="stylesheet" href="/brand.css"/>
+  <link rel="stylesheet" href="/css/purchase-preview.css?v=1"/>
+  <link rel="stylesheet" href="/css/dashboard-contact.css?v=1"/>
+  <link rel="stylesheet" href="/css/site-banner.css?v=1"/>
+  <link rel="stylesheet" href="/css/mizzy-pro.css?v=2"/>
+  <link rel="icon" href="/favicon.ico"/>
+  <meta name="theme-color" content="#00b4f8"/>
+  <script>
+    (function(){
+      try{
+        var pref = localStorage.getItem('ksl_theme');
+        var effective = (pref === 'light' || pref === 'dark') ? pref : (function(){ var h = new Date().getHours(); return (h >= 19 || h < 7) ? 'dark' : 'light'; })();
+        document.documentElement.setAttribute('data-theme', effective);
+      }catch(e){}
+      try{ if(!localStorage.getItem('ksl_token')) window.location.replace('/login'); }catch(e){}
+    })();
+  </script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root {
+      --ms-blue: #00b4f8;
+      --ms-blue-dark: #0084d6;
+      --ms-cyan-light: #e6f8ff;
+      --ms-glow: rgba(0, 180, 248, 0.28);
+      --bg: #0b0f19;
+      --card-bg: #131b2e;
+      --card-border: rgba(0, 180, 248, 0.16);
+      --text: #f0f6fc;
+      --text-muted: #8b9bb4;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    [data-theme="light"] {
+      --bg: #f4f8fc;
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 180, 248, 0.18);
+      --text: #0e1726;
+      --text-muted: #5e6d82;
+      --ms-cyan-light: #e0f4ff;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: var(--bg);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    .mz-container {
+      max-width: 680px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0 16px 90px;
+    }
+
+    /* ── HEADER BAR ── */
+    .mz-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 4px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      backdrop-filter: blur(12px);
+    }
+    .mz-user-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 6px 14px 6px 8px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .mz-user-pill:hover {
+      border-color: var(--ms-blue);
+      box-shadow: 0 0 14px var(--ms-glow);
+    }
+    .mz-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00d2ff, #0084d6);
+      color: #fff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .mz-user-meta { display: flex; flex-direction: column; text-align: left; }
+    .mz-hi { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.2; }
+    .mz-sub { font-size: 11px; color: var(--ms-blue); font-weight: 600; }
+
+    .mz-actions-top { display: flex; align-items: center; gap: 8px; }
+    .mz-circle-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      cursor: pointer;
+      position: relative;
+      transition: background .2s, transform .15s;
+    }
+    .mz-circle-btn:hover { background: var(--ms-cyan-light); color: var(--ms-blue-dark); transform: translateY(-1px); }
+    .mz-circle-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── HERO BALANCE CARD ── */
+    .mz-hero {
+      background: linear-gradient(145deg, #0d1e38 0%, #002d57 100%);
+      border: 1px solid rgba(0, 180, 248, 0.35);
+      border-radius: 22px;
+      padding: 24px;
+      margin-top: 10px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 24px var(--ms-glow);
+      color: #ffffff;
+    }
+    .mz-hero::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 210, 255, 0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .mz-hero-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .mz-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(0, 180, 248, 0.2);
+      border: 1px solid rgba(0, 180, 248, 0.4);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #7ee2ff;
+    }
+    .mz-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #00d2ff; }
+    .mz-balance-amount {
+      font-family: 'Sora', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin: 10px 0 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mz-btn-deposit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      background: linear-gradient(90deg, #00b4f8, #0084d6);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(0, 180, 248, 0.4);
+      border: none;
+      cursor: pointer;
+      transition: transform .15s, opacity .15s;
+    }
+    .mz-btn-deposit:hover { opacity: 0.95; transform: translateY(-1px); }
+
+    /* ── QUICK ACTION TILES ── */
+    .mz-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .mz-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 14px 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      transition: transform .15s, border-color .15s, box-shadow .15s;
+    }
+    .mz-tile:hover {
+      transform: translateY(-2px);
+      border-color: var(--ms-blue);
+      box-shadow: 0 4px 12px var(--ms-glow);
+    }
+    .mz-tile-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 180, 248, 0.15), rgba(0, 132, 214, 0.25));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ms-blue);
+      margin-bottom: 8px;
+    }
+    .mz-tile-icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .mz-tile-label { font-size: 12px; font-weight: 600; color: var(--text); }
+
+    /* ── SECTION CARDS ── */
+    .mz-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .mz-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .mz-section-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .mz-see-all { font-size: 12px; color: var(--ms-blue); font-weight: 700; }
+
+    /* ── TRANSACTIONS LIST ── */
+    .mz-tx-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .mz-tx-item:last-child { border-bottom: none; }
+    .mz-tx-left { display: flex; align-items: center; gap: 12px; }
+    .mz-tx-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(0, 180, 248, 0.1);
+      color: var(--ms-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── BOTTOM DOCK NAV ── */
+    .mz-dock {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 460px;
+      background: rgba(19, 27, 46, 0.94);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      padding: 8px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    .mz-dock-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 4px 10px;
+    }
+    .mz-dock-link.active, .mz-dock-link:hover { color: var(--ms-blue); }
+    .mz-dock-link svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .ms-contact__links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+    .ms-contact__links a { min-width:0; padding:13px 8px; border:1px solid var(--card-border); border-radius:8px; background:var(--bg); text-align:center; color:var(--ms-blue); font-size:12px; font-weight:700; }
+    .ms-contact__links a:hover { border-color:var(--ms-blue); }
+    @media(max-width:480px){.ms-contact__links{grid-template-columns:1fr}.ms-contact__links a{text-align:left;padding:12px}}
+  
+    .mz-actions-grid.ms-grid6{grid-template-columns:repeat(4,1fr);gap:10px}
+    .ms-grid6 .mz-tile{padding:12px 4px}.ms-grid6 .mz-tile-label{font-size:11.5px}.ms-grid6 .mz-tile-sub{font-size:9.5px}
+    .mz-tile{flex-direction:column;text-align:center}
+    .mz-tile-sub{display:block;font-size:10.5px;color:var(--muted,#8b93a7);margin-top:2px}
+    
+  </style>
+<style id="mp-wallet-inline">
+/* Wallet card styles are inlined so the dashboard never depends on another file loading. */
+:root{
+  --mp-a:#00b4f8; --mp-a2:#0084d6; --mp-a3:#7ee2ff;
+  --mp-navy:#0b0f19; --mp-navy2:#0d1e38; --mp-navy3:#002d57;
+  --mp-glow:rgba(0,180,248,.28);
+  --mp-radius:20px;
+}
+/* ---------- the credit-card-style wallet (landing + dashboard) ---------- */
+.mp-wallet{position:relative;overflow:hidden;border-radius:26px;padding:26px 26px 22px;color:#fff;max-width:440px;width:100%;margin-inline:auto;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;
+  background:radial-gradient(420px 260px at 105% -10%,rgba(126,226,255,.55),transparent 60%),radial-gradient(360px 240px at -10% 115%,rgba(0,180,248,.45),transparent 60%),linear-gradient(140deg,#0a2a52 0%,#003d73 48%,#0084d6 120%);
+  border:1px solid rgba(126,226,255,.35);box-shadow:0 34px 70px -28px rgba(0,132,214,.8),inset 0 1px 0 rgba(255,255,255,.18)}
+.mp-wallet::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.045) 0 2px,transparent 2px 14px);pointer-events:none}
+.mp-wallet::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-90px;top:-110px;border:1px solid rgba(255,255,255,.14);box-shadow:0 0 0 38px rgba(255,255,255,.03),0 0 0 78px rgba(255,255,255,.02);pointer-events:none}
+.mp-w-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between}
+.mp-w-brand{display:flex;align-items:center;gap:10px;font:800 15px/1 'Sora',sans-serif;letter-spacing:.2px}
+.mp-w-logo{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28)}
+.mp-w-logo{background:#000 url("/img/mizzy-logo.jpg") center/cover no-repeat!important;border-radius:50%!important;border:0!important}.mp-w-logo>svg{display:none!important}
+.mp-w-logo svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.mp-w-nfc{width:28px;height:28px;stroke:rgba(255,255,255,.8);fill:none;stroke-width:1.8;stroke-linecap:round}
+.mp-w-mid{position:relative;z-index:2;margin:18px 0 14px}
+.mp-w-chip{width:44px;height:33px;border-radius:8px;margin-bottom:16px;background:linear-gradient(135deg,#ffe9a8,#d9ad3c 55%,#f6d77a);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18);position:relative;overflow:hidden}
+.mp-w-chip::before,.mp-w-chip::after{content:"";position:absolute;background:rgba(0,0,0,.2)}
+.mp-w-chip::before{left:0;right:0;top:50%;height:1px}.mp-w-chip::after{top:0;bottom:0;left:33%;width:1px;box-shadow:14px 0 0 rgba(0,0,0,.2)}
+.mp-w-label{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.mp-w-eye{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);color:#fff;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;cursor:pointer;padding:0}
+.mp-w-eye svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.mp-w-amt{font:800 clamp(30px,8vw,42px)/1.1 'Sora',sans-serif;letter-spacing:-.5px;margin-top:6px;text-shadow:0 2px 18px rgba(0,0,0,.25)}
+.mp-w-bot{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.mp-w-holder small{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px}
+.mp-w-holder b{font:700 14px/1.2 'Plus Jakarta Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.mp-w-add{display:inline-flex;align-items:center;gap:7px;background:#fff;color:#00508f!important;font-weight:800;font-size:13px;padding:10px 16px;border-radius:12px;text-decoration:none!important;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);transition:transform .15s}
+.mp-w-add:hover{transform:translateY(-2px)}
+.mp-w-add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round}
+
+
+/* ---------- DASHBOARD ---------- */
+.mz-container{max-width:700px}
+.mz-nav{padding:18px 4px 12px}
+.mz-user-pill{padding:6px 16px 6px 6px}
+.mz-avatar{width:40px;height:40px;background:linear-gradient(135deg,#19c1ff,#0084d6);box-shadow:0 6px 16px -6px rgba(0,180,248,.7)}
+.mz-hero.mp-wallet{margin:10px auto 6px;max-width:none;border-radius:28px;padding:26px 26px 22px;min-height:236px}
+.mz-hero.mp-wallet::after{display:block}
+.mz-actions-grid{gap:12px;margin:18px 0 22px}
+.mz-tile{padding:16px 6px 14px;border-radius:18px;position:relative;overflow:hidden}
+.mz-tile::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,180,248,.08),transparent 55%);opacity:0;transition:opacity .2s}
+.mz-tile:hover::before{opacity:1}
+.mz-tile-icon{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,rgba(0,180,248,.2),rgba(0,132,214,.34));box-shadow:inset 0 0 0 1px rgba(0,180,248,.18)}
+.mz-tile-label{font-weight:800;font-size:12.5px}
+.mz-section{border-radius:22px}
+@media(max-width:420px){.mz-actions-grid.ms-grid6{gap:8px}.ms-grid6 .mz-tile-sub{display:none}}
+
+
+</style>
+</head>
+<body>
+
+  <!-- SVG Icon Library -->
+  <svg style="display:none">
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h9.6l2-8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 015.7 5l-5 5-2.4-2.4-5 5a2 2 0 01-2.8-2.8l5-5L7.8 8.7a4 4 0 015-5.7L10 6l1 1z"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h13a1 1 0 011 1v3"/><path d="M3 7v11a2 2 0 002 2h14a1 1 0 001-1v-6a1 1 0 00-1-1h-4a2 2 0 000 4h5"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 16V11a6 6 0 10-12 0v5l-2 3h16z"/><path d="M10 22h4"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M17.9 17.9A9.9 9.9 0 0112 19c-6 0-10-7-10-7a17.7 17.7 0 014.1-5M9.9 4.2A10 10 0 0112 4c6 0 10 7 10 7a17.6 17.6 0 01-2 3M3 3l18 18"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M12 8v4l3 3M3 12a9 9 0 100 0z"/><path d="M3 4v5h5"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></symbol>
+  </svg>
+
+  <div class="mz-container">
+    <!-- Navigation -->
+    <header class="mz-nav">
+      <div class="mz-user-pill" id="dshProfileBtn" onclick="dshToggleUserMenu(event)">
+        <div class="mz-avatar" id="dshAvatar">
+          <span id="dshAvatarInitial">M</span>
+          <img id="dshAvatarImg" src="" alt="Mizzy Sales" style="display:none" onerror="this.style.display='none'"/>
+        </div>
+        <div class="mz-user-meta">
+          <span class="mz-hi" id="dshHi">Welcome back</span>
+          <span class="mz-sub">Mizzy Sales VIP</span>
+        </div>
+      </div>
+
+      <div class="mz-actions-top">
+        <button type="button" class="mz-circle-btn" onclick="dshToggleTheme()" title="Toggle appearance">
+          <svg><use href="#i-zap"/></svg>
+        </button>
+        <a href="/notifications" class="mz-circle-btn" title="Alerts">
+          <svg><use href="#i-bell"/></svg>
+          <span id="dshNotifDot" style="display:none;position:absolute;top:6px;right:6px;width:8px;height:8px;background:#ef4444;border-radius:50%"></span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Hidden dropdown container for compatibility -->
+    <div id="dshDropdown" style="display:none">
+      <div id="dshDropName"></div>
+      <div id="dshDropEmail"></div>
+    </div>
+
+    <!-- Wallet card -->
+    <section class="mp-wallet mz-wallet" aria-label="Wallet balance">
+      <div class="mp-w-top">
+        <div class="mp-w-brand"><span class="mp-w-logo"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 5.5 6l4.5 5 3-8 3 8 4.5-5L23 17H3Z"/></svg></span>Mizzy Sales</div>
+        <svg class="mp-w-nfc" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8a6 6 0 010 8M11 5.5a10 10 0 010 13M15 3a14 14 0 010 18"/></svg>
+      </div>
+      <div class="mp-w-mid">
+        <div class="mp-w-chip"></div>
+        <div class="mp-w-label">Wallet balance
+          <button type="button" class="mp-w-eye" onclick="dshToggleBalanceVisibility()" aria-label="Show or hide balance">
+            <svg width="15" height="15" viewBox="0 0 24 24"><use id="dshEyeIcon" href="#i-eye"/></svg>
+          </button>
+        </div>
+        <div class="mp-w-amt" id="dshBalance">₦0.00</div>
+      </div>
+      <div class="mp-w-bot">
+        <div class="mp-w-holder"><small>Member</small><b id="dshCardName">Mizzy member</b></div>
+        <a href="/deposit" class="mp-w-add"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add money</a>
+      </div>
+    </section>
+
+    <!-- 4 Quick Actions -->
+    <div class="mz-actions-grid ms-grid6">
+      <a href="/buy-number" class="mz-tile">
+        <div class="mz-tile-icon"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <span class="mz-tile-label">Buy Numbers</span><span class="mz-tile-sub">SMS verification</span>
+      </a>
+      <a href="/marketplace" class="mz-tile">
+        <div class="mz-tile-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a1 1 0 001 .8h9.2a1 1 0 001-.8L21 8H6"/></svg></div>
+        <span class="mz-tile-label">Accounts</span><span class="mz-tile-sub">Ready to use</span>
+      </a>
+      <a href="/working-pics" class="mz-tile">
+        <div class="mz-tile-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5.5-5.5L4 21"/></svg></div>
+        <span class="mz-tile-label">Working Pics</span><span class="mz-tile-sub">Verified media</span>
+      </a>
+      <a href="/boost" class="mz-tile">
+        <div class="mz-tile-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
+        <span class="mz-tile-label">Boosts</span><span class="mz-tile-sub">Grow your page</span>
+      </a>
+      <a href="/tutorials" class="mz-tile">
+        <div class="mz-tile-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3"/></svg></div>
+        <span class="mz-tile-label">Tutorials</span><span class="mz-tile-sub">Step-by-step guides</span>
+      </a>
+      <a href="/tools" class="mz-tile">
+        <div class="mz-tile-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 015.7 5l-5 5-2.4-2.4-5 5a2 2 0 01-2.8-2.8l5-5-2.4-2.4"/></svg></div>
+        <span class="mz-tile-label">Tools</span><span class="mz-tile-sub">Utilities</span>
+      </a>
+      <a href="/giveaways" class="mz-tile">
+        <div class="mz-tile-icon"><svg viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 9h18M12 9v12M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z"/></svg></div>
+        <span class="mz-tile-label">Giveaways</span><span class="mz-tile-sub">Win rewards</span>
+      </a>
+      <a href="/referrals" class="mz-tile">
+        <div class="mz-tile-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0M16 8a3 3 0 010 6M18 20a6 6 0 00-3-5"/></svg></div>
+        <span class="mz-tile-label">Referrals</span><span class="mz-tile-sub">Earn commission</span>
+      </a>
+    </div>
+
+    <section class="mz-section ms-purchases" aria-labelledby="msPurchaseTitle">
+      <div class="ms-purchases__head">
+        <div><p class="ms-purchases__eyebrow">Your orders</p><h2 id="msPurchaseTitle">Purchase history</h2></div>
+        <a href="/purchases" class="ms-purchases__all">View all →</a>
+      </div>
+      <div id="msPurchasePreview" class="ms-purchases__list" aria-live="polite">Loading purchases…</div>
+    </section>
+
+
+    <!-- Recent Orders & Activity -->
+    <section class="mz-section">
+      <div class="mz-section-header">
+        <h3 class="mz-section-title">Recent Activity</h3>
+        <a href="/transactions" class="mz-see-all">History →</a>
+      </div>
+      <div id="dshTransactions">
+        <div style="text-align:center;padding:24px;color:var(--text-muted);font-size:13px">Loading your activity...</div>
+      </div>
+    </section>
+
+    <!-- Account Actions -->
+    <section class="mz-section" style="padding:12px 18px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:13px;font-weight:600">Session</span>
+        <button onclick="dshLogout()" style="background:none;border:none;color:#ef4444;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">
+          <svg style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2"><use href="#i-logout"/></svg> Sign Out
+        </button>
+      </div>
+    </section>
+
+    <!-- Bottom Floating Dock -->
+    <nav class="mz-dock">
+      <a href="/dashboard" class="mz-dock-link active"><svg><use href="#i-home"/></svg>Home</a>
+      <a href="/marketplace" class="mz-dock-link"><svg><use href="#i-cart"/></svg>Store</a>
+      <a href="/deposit" class="mz-dock-link"><svg><use href="#i-wallet"/></svg>Wallet</a>
+      <a href="/purchases" class="mz-dock-link"><svg><use href="#i-history"/></svg>Orders</a>
+      <a href="/settings" class="mz-dock-link"><svg><use href="#i-user"/></svg>Profile</a>
+    </nav>
+  </div>
+
+  <script src="/js/purchase-preview.js?v=1"></script>
+  <script src="/js/site-banner.js?v=1"></script>
+  <script src="/js/dashboard-contact.js?v=1"></script>
+  <!-- Main scripts maintaining compatibility -->
+  <script>
+    (function(){
+      const token = localStorage.getItem('ksl_token');
+      if (!token) { window.location.replace('/login'); return; }
+
+      function updateDashboardUser(u) {
+        if (!u) return;
+        const name = u.fullName || u.username || u.name || 'Client';
+        const firstName = name.trim().split(' ')[0] || 'Client';
+
+        const hiEl = document.getElementById('dshHi');
+        if (hiEl) hiEl.textContent = 'Hi, ' + firstName;
+
+        const cardName = document.getElementById('dshCardName');
+        if (cardName) cardName.textContent = name.trim();
+
+        const avInit = document.getElementById('dshAvatarInitial');
+        if (avInit) avInit.textContent = firstName.charAt(0).toUpperCase();
+
+        if (u.avatar) {
+          const avImg = document.getElementById('dshAvatarImg');
+          if (avImg) {
+            avImg.src = u.avatar;
+            avImg.style.display = 'block';
+            if (avInit) avInit.style.display = 'none';
+          }
+        }
+
+        const bal = Number(u.balance != null ? u.balance : (u.wallet || 0));
+        const formatted = '₦' + bal.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+        window._rawBalance = formatted;
+
+        const balEl = document.getElementById('dshBalance');
+        if (balEl && balEl.textContent !== '••••••') {
+          balEl.textContent = formatted;
+        }
+      }
+
+      // 1. Immediately display cached user from login to eliminate any initial flicker
+      try {
+        const cached = JSON.parse(localStorage.getItem('ksl_user') || 'null');
+        if (cached) updateDashboardUser(cached);
+      } catch (e) {}
+
+      // 2. Fetch fresh user data and wallet balance from the server
+      fetch('/api/user/me', { headers: { 'Authorization': 'Bearer ' + token } })
+        .then(r => r.json())
+        .then(data => {
+          if (!data || data.error) return;
+          const u = data.user || data;
+          updateDashboardUser(u);
+
+          try {
+            const cur = JSON.parse(localStorage.getItem('ksl_user') || '{}');
+            localStorage.setItem('ksl_user', JSON.stringify({ ...cur, ...u }));
+          } catch (e) {}
+        })
+        .catch(console.error);
+
+      // Fetch recent transactions
+      fetch('/api/user/transactions?limit=5', { headers: { 'Authorization': 'Bearer ' + token } })
+        .then(r => r.json())
+        .then(res => {
+          const list = document.getElementById('dshTransactions');
+          const txs = (res && res.transactions) ? res.transactions : [];
+          if (!txs.length) {
+            list.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-muted);font-size:13px">No transactions yet</div>';
+            return;
+          }
+          list.innerHTML = txs.map(t => `
+            <div class="mz-tx-item">
+              <div class="mz-tx-left">
+                <div class="mz-tx-icon">⚡</div>
+                <div>
+                  <div style="font-weight:700;font-size:13px">${t.description || t.type || 'Transaction'}</div>
+                  <div style="font-size:11px;color:var(--text-muted)">${new Date(t.createdAt).toLocaleDateString()}</div>
+                </div>
+              </div>
+              <div style="font-weight:800;font-size:13px;color:${t.type === 'deposit' ? '#10b981' : '#f0f6fc'}">
+                ${t.type === 'deposit' ? '+' : '-'}₦${Number(t.amount || 0).toLocaleString()}
+              </div>
+            </div>
+          `).join('');
+        })
+        .catch(() => {
+          document.getElementById('dshTransactions').innerHTML = '<div style="text-align:center;padding:16px;color:var(--text-muted);font-size:13px">Recent activity ready in full history</div>';
+        });
+    })();
+
+    function dshToggleBalanceVisibility() {
+      const el = document.getElementById('dshBalance');
+      if (!el) return;
+      if (el.textContent === '••••••') {
+        el.textContent = window._rawBalance || '₦0.00';
+      } else {
+        el.textContent = '••••••';
+      }
+    }
+
+    function dshToggleTheme() {
+      const curr = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = curr === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('ksl_theme', next);
+    }
+
+    function dshToggleUserMenu(e) {
+      window.location.href = '/settings';
+    }
+
+    function dshLogout() {
+      localStorage.removeItem('ksl_token');
+      window.location.replace('/login');
+    }
+  </script>
+<script src="/js/float-tools.js" defer></script>
+<script src="/js/support-dock.js?v=1" defer></script>
+<script src="/js/mz-banner.js?v=2"></script>
+</body>
+</html>

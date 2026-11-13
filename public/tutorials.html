@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Sora:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="icon" href="/img/mizzy-logo.jpg"/><link rel="stylesheet" href="/css/ms-pages.css"/><link rel="stylesheet" href="/css/site-banner.css"/>
+<script>try{var t=localStorage.getItem('ksl_theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<title>Tutorials | Mizzy Sales</title></head><body>
+<div class="msp">
+  <div class="msp-top"><a class="msp-back" href="/dashboard" aria-label="Back">&#8592;</a><div><h1>Tutorials</h1><p class="msp-sub">Step-by-step guides for every feature</p></div></div>
+  <div class="msp-grid" id="list"><div class="msp-empty">Loading...</div></div>
+</div>
+<script src="/js/site-banner.js"></script>
+<script>
+function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+fetch('/api/public/tutorials').then(function(r){return r.json()}).then(function(items){
+  var el=document.getElementById('list');
+  if(!items.length){el.innerHTML='<div class="msp-empty">No tutorials yet. Check back soon.</div>';return}
+  el.innerHTML=items.map(function(t,i){
+    var imgs=(t.images||[]).map(function(u){return '<img loading="lazy" src="'+esc(u)+'" alt="">'}).join('');
+    var vids=(t.videos||[]).map(function(u){return '<video controls preload="metadata" playsinline src="'+esc(u)+'" style="width:100%;border-radius:12px;background:#000"></video>'}).join('');
+    var vid=t.videoUrl?'<p><a class="msp-tag" target="_blank" rel="noopener noreferrer" href="'+esc(t.videoUrl)+'">Watch video</a></p>':'';
+    return '<div class="msp-card"><span class="msp-tag">'+esc(t.category)+'</span><h3 style="margin-top:8px">'+esc(t.title)+'</h3>'+
+      (t.description?'<p style="white-space:pre-wrap">'+esc(t.description)+'</p>':'')+vid+(vids?'<div class="msp-imgs">'+vids+'</div>':'')+(imgs?'<div class="msp-imgs">'+imgs+'</div>':'')+'</div>';
+  }).join('');
+}).catch(function(){document.getElementById('list').innerHTML='<div class="msp-empty">Could not load tutorials.</div>'});
+</script><script src="/js/float-tools.js" defer></script>
+<script src="/js/support-dock.js?v=1" defer></script>
+<script src="/js/mz-banner.js?v=2"></script>
+</body></html>
