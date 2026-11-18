@@ -10,8 +10,8 @@
   if (window.__klsDevCredit) return;
   window.__klsDevCredit = true;
 
-  var GITHUB = 'BADBOI-v1';
-  var GITHUB_URL = 'https://github.com/BADBOI-v1';
+  var GITHUB = 'mizzy333';
+  var GITHUB_URL = 'https://github.com/mizzy333';
   var OWNER_WHATSAPP = 'https://wa.me/2349065518402';
 
   function mount() {
